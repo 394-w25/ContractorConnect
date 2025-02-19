@@ -1,10 +1,13 @@
+import Dispatcher from './components/Dispatcher';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 
 const App = () => {
 
   return (
-    <div className = "text-3xl font-bold underline">
-        ContractorConnect 
-    </div>
+    <BrowserRouter>
+      <Dispatcher />
+    </BrowserRouter>
   );
 };
 
