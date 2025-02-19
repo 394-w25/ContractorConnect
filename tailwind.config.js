@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        homieBlue: '#2511BE',
+      },
+      fontFamily: {
+        sans: ['InterVariable', '...defaultTheme.fontFamily.sans'],
+      },
+    }
   },
   plugins: [],
 }
