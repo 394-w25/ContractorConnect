@@ -11,23 +11,25 @@ import { jobRequests } from '../utilities/data';
 
 const DrawerCard = ({ width, height, img, name }) => {
   return (
-    <Box >
+    <Box sx={{
+      width: '100%'
+    }}>
       <Card sx={{
         width: { width },
-        height: { height },
+        // height: { height },
         display: "flex",
         padding: "12px",
         alignItems: "center",
         gap: "10px",
         alignSelf: "stretch",
         borderRadius: "12px",
-        border: "1px solid #2511BE",
+        border: '2px solid #2511BE',
         marginBottom: '8px'
       }}>
         <CardActionArea>
           <CardMedia
             component="img"
-            height="140"
+            height={height}
             image={img}
             sx={{
               display: 'flex',
@@ -40,6 +42,9 @@ const DrawerCard = ({ width, height, img, name }) => {
               borderRadius: '5.164px',
               background: `url(${img}) lightgray 50% / cover no-repeat`,
               maxWidth: 345,
+              borderColor: 'black',
+              border: 'blue'
+              
             }}
           />
           <CardContent>

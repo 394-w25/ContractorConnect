@@ -9,7 +9,7 @@ import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
 
 const ContractorCard = ({name, quote, imgUrl, height, width, needsQuote}) => {
-    console.log(imgUrl)
+    
 
     return( <Card sx={{ 
         border: '2px solid #2511BE',
@@ -27,7 +27,7 @@ const ContractorCard = ({name, quote, imgUrl, height, width, needsQuote}) => {
                 sx={{ height: {height},
                     width: {width},
                     flexShrink: 0,
-                    borderRadius: 5
+                    borderRadius: '5.164px'
                 }}
                 image={imgUrl}
                 title={name}

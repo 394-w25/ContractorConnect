@@ -23,7 +23,7 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen }) => {
             className=""
             open={drawerOpen}
         >
-            <div className="w-full h-[48px] bg-homieBlue flex flex-row items-center fixed top-0 left-0">
+            <div className="w-full h-[48px] bg-homieBlue flex flex-row items-center fixed top-0 left-0 z-50">
                 <button
                     onClick={() => setDrawerOpen(!drawerOpen)}
                     className="ml-3"
@@ -33,13 +33,13 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen }) => {
             </div>
             <div className="w-full mt-[48px]">
             {(jobRequests && Object.entries(jobRequests).length > 0) && 
-                <div className="flex flex-col gap-2 items-center">
-                    <span className="font-bold w-full text-start pl-4">
+                <div className="flex flex-col gap-2 items-center p-4">
+                    <span className="font-bold w-full text-start">
                         Requests
                     </span>
                     {Object.entries(jobRequests).map((rq, idx) => (
                         <DrawerCard
-                            width={150}
+                            width={'100%'}
                             height={51}
                             img={rq[1].img}
                             name={rq[1].name}
@@ -49,8 +49,8 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen }) => {
                 </div>
             }
             {(contractors && Object.entries(contractors).length > 0) &&
-                <div className="flex flex-col gap-2 items-center">
-                    <span className="font-bold w-full text-start pl-4">
+                <div className="flex flex-col gap-2 items-center p-4">
+                    <span className="font-bold w-full text-start">
                         Contractors
                     </span>
                     {Object.entries(contractors).map((ct, idx) => (
