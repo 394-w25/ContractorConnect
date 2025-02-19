@@ -1,7 +1,7 @@
 import BidsDisplay from './BidsDisplay';
 import RequestInfoDetails from './RequestInfoDetails'
 
-const RequestInfo = ({isOpen}) => {
+const RequestInfo = ({isOpen, index}) => {
     const leftMargin = isOpen ? "ml-[305px] " : "ml-0 ";
     const width = isOpen ?  "w" + (window.innerWidth - 305).toString() : "w-full";
 
@@ -9,7 +9,7 @@ const RequestInfo = ({isOpen}) => {
     return (
         <div className={"grid grid-cols-3 bg-white " + leftMargin + width}>
             <div className="col-span-2">
-                <RequestInfoDetails />
+                <RequestInfoDetails index={index}/>
             </div>
 
 

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { jobRequests } from '../utilities/data';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
@@ -6,11 +5,9 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
 
-
-
-const RequestInfoDetails =() => {
-    const title = jobRequests[0].name;
-    const img = jobRequests[0].img;
+const RequestInfoDetails =({index}) => {
+    const title = jobRequests[index].name;
+    const img = jobRequests[index].img;
     const {
         isIndoor,
         sqft,
@@ -24,7 +21,7 @@ const RequestInfoDetails =() => {
         schedule,
         otherServices,
         desc,
-      } = jobRequests[0];
+      } = jobRequests[index];
 
     // Grid Data
     const gridData = [

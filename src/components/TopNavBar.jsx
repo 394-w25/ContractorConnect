@@ -5,6 +5,7 @@ import RequestInfo from './RequestInfo'
 
 const TopNavBar = () => {
 
+    const [index, setIndex] = useState(0);
     const [drawerOpen, setDrawerOpen] = useState(true);
 
     return (
@@ -22,11 +23,11 @@ const TopNavBar = () => {
                     ContractorConnect
                 </span>
             </div>
-            <DrawerContainer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
+            <DrawerContainer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} setIndex={setIndex} />
 
             </div>
 
-            <RequestInfo isOpen={drawerOpen}/>
+            <RequestInfo isOpen={drawerOpen} index={index}/>
         </div>
       
     )

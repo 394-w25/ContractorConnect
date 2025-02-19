@@ -15,7 +15,8 @@ const BidsDisplay = () => {
             </div>
 
             <p className="text-lg">Contractors</p>
-            {Object.values(contractors).map((contractor) => <ContractorCard 
+            {Object.values(contractors).map((contractor, idx) => <ContractorCard 
+                                                    key={idx}
                                                     name={contractor.name} 
                                                     quote={contractor.quote} 
                                                     imgUrl={contractor.img} 

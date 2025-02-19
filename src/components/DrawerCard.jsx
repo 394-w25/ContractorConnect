@@ -9,9 +9,14 @@ import { jobRequests } from '../utilities/data';
 
 
 
-const DrawerCard = ({ width, height, img, name }) => {
+const DrawerCard = ({ width, height, img, name, handleClick }) => {
+  
+  console.log(img);
+  
   return (
-    <Box sx={{
+    <Box 
+      onClick = {handleClick}
+      sx={{
       width: '100%'
     }}>
       <Card sx={{

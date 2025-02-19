@@ -5,7 +5,11 @@ import ContractorCard from './ContractorCard';
 import { contractors, jobRequests } from '../utilities/data'
 
 
-const DrawerContainer = ({ drawerOpen, setDrawerOpen }) => {
+const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
+
+    const handleClick = (index) => {
+        setIndex(index)
+    }
 
     return (
         <Drawer
@@ -39,10 +43,12 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen }) => {
                     </span>
                     {Object.entries(jobRequests).map((rq, idx) => (
                         <DrawerCard
+                            key={idx}
                             width={'100%'}
                             height={51}
                             img={rq[1].img}
                             name={rq[1].name}
+                            handleClick = {() => handleClick(rq[0])}
                         />
 
                     ))}
@@ -56,6 +62,7 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen }) => {
                     {Object.entries(contractors).map((ct, idx) => (
                         // name, quote, imgUrl, height, width
                         <ContractorCard
+                            key={idx}
                             name={ct[1].name}
                             quote={ct[1].quote}
                             imgUrl={ct[1].img}
