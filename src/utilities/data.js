@@ -61,5 +61,31 @@ export const jobRequents = {
         img: "https://www.thespruce.com/thmb/ZqfUoFjPOAqtJBpzjDw-sxRdiNQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/modern-dining-room-ideas-4147451-hero-d6333998f8b34620adfd4d99ac732586.jpg"
     }
 
+}
 
+export const contractos = { 
+
+    0 : {
+        name : "Connor Construct LLC", 
+        quote : 350,
+        img : "https://cdn.prod.website-files.com/63501eb57ab02026df8ab1d3/6644cf7d6e5272cdf60c333c_Second_Image.webp"
+    },
+
+    1 : {
+        name : "Ben Bejamin",
+        quote : 360,
+        img : "https://www.homepainterstoronto.com/wp-content/uploads/2023/07/interior-painting-home-painters-painting-a-home-interior-home-painting-services.jpg"
+    } , 
+
+    2 : { 
+        name : "Chicago Painting, LLC",
+        quote: 410,
+        img : "https://i.ytimg.com/vi/bFk8aJDJln4/maxresdefault.jpg"
+    } , 
+
+    3 : {
+        name : "Best Painters, LLC", 
+        quote  : 360,
+        img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtJnY35iEzFPyhx32Lf_XLJH3OTvLtFScy1w&s"
+    }
 }
