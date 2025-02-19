@@ -58,7 +58,7 @@ export const jobRequests = {
         schedule: "ASAP",
         otherServices: "None",
         desc: "The dining room requires a glossy paint job in two colors. The walls are clean and smooth, so only light cleaning is needed before painting. The job is urgent and should be completed as soon as possible.",
-        img: "https://www.thespruce.com/thmb/ZqfUoFjPOAqtJBpzjDw-sxRdiNQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/modern-dining-room-ideas-4147451-hero-d6333998f8b34620adfd4d99ac732586.jpg"
+        img: "https://studio-mcgee.com/wp-content/app/uploads/2024/01/studiomcgee-McGeeHome-20231005-0027.jpg"
     }
 
 }
