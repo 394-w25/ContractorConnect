@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
-import { CustomIcon } from "../lib/icons";
-
+import { HomieIcon, DrawerOpenIcon } from "../lib/icons";
+import DrawerContainer from '../components/DrawerContainer'
 
 const TopNavBar = () => {
 
@@ -9,29 +9,20 @@ const TopNavBar = () => {
 
     return (
         <div className="h-[48px] bg-homieBlue text-white flex flex-row items-center gap-2">
-            <CustomIcon />
-            <span className="font-bold">
-                Homie
-            </span>
-            <Drawer
-                // sx={{
-                //     width: drawerWidth,
-                //     flexShrink: 0,
-                //     '& .MuiDrawer-paper': {
-                //         width: drawerWidth,
-                //         boxSizing: 'border-box',
-                //     },
-                // }}
-                variant="persistent"
-                anchor="left"
-                className="bg-black"
-                open={drawerOpen}
+            <button 
+                onClick={() => setDrawerOpen(!drawerOpen)}
+                className="ml-3"
             >
-                <button >
-                    <DrawerIcon />
-                </button>
+                <DrawerOpenIcon />
+            </button>
+            <div className={`flex flex-row gap-2 items-center ${drawerOpen && 'ml-[280px]'}`}>
+                <HomieIcon />
+                <span className="font-bold">
+                    Homie
+                </span>
+            </div>
+            <DrawerContainer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
 
-            </Drawer>
         </div>
     )
 }
