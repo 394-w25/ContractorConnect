@@ -41,7 +41,7 @@ const ContractorCard = ({name, quote, imgUrl, height, width, needsQuote}) => {
                     borderRadius: 2,
                     borderColor: '#2511BE'
                 }}>
-                    {quote}
+                    ${quote}
                 </Button>
             </CardActions>
             }   
