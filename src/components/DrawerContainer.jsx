@@ -60,7 +60,8 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen }) => {
                             quote={ct[1].quote}
                             imgUrl={ct[1].img}
                             height={51}
-                            width={150}
+                            width={'100%'}
+                            needsQuote={false}
                         />
                     ))}
                 </div>

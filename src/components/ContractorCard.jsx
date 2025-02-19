@@ -8,18 +8,19 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
 
-const ContractorCard = ({name, quote, imgUrl, height, width}) => {
+const ContractorCard = ({name, quote, imgUrl, height, width, needsQuote}) => {
     console.log(imgUrl)
 
     return( <Card sx={{ 
         border: '2px solid #2511BE',
-        maxWidth: 'fit-content', 
+        width: '100%', 
         borderRadius: 5,
         padding: 2,
     }}>
 
         <Box sx={{display: 'flex',
-                  justifyContent: 'space-between'
+                  justifyContent: 'space-between',
+                  marginBottom: 1
         }}>
 
             <CardMedia
@@ -31,7 +32,7 @@ const ContractorCard = ({name, quote, imgUrl, height, width}) => {
                 image={imgUrl}
                 title={name}
             />
-
+            {needsQuote &&
             <CardActions>
                 <Button variant="outlined" 
                         size="large" 
@@ -43,6 +44,7 @@ const ContractorCard = ({name, quote, imgUrl, height, width}) => {
                     {quote}
                 </Button>
             </CardActions>
+            }   
         </Box>
         
        <Box sx={{
