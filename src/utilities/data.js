@@ -1,5 +1,5 @@
 
-export const jobRequents = {
+export const jobRequests = {
 
     0 : {
         name: "Son's Room", 
@@ -63,7 +63,7 @@ export const jobRequents = {
 
 }
 
-export const contractos = { 
+export const contractors = { 
 
     0 : {
         name : "Connor Construct LLC", 
