@@ -8,7 +8,7 @@ const TopNavBar = () => {
     const [drawerOpen, setDrawerOpen] = useState(true);
 
     return (
-        <div className="h-[48px] bg-homieBlue text-white flex flex-row items-center gap-2">
+        <div className="h-[48px] bg-homieBlue text-white flex flex-row items-center gap-2 z-50">
             <button 
                 onClick={() => setDrawerOpen(!drawerOpen)}
                 className="ml-3"

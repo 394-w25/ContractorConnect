@@ -23,7 +23,7 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen }) => {
             className=""
             open={drawerOpen}
         >
-            <div className="w-full h-[48px] bg-homieBlue flex flex-row items-center fixed top-0 left-0 z-50">
+            <div className="w-[305px] h-[48px] bg-homieBlue flex flex-row items-center fixed top-0 left-0 z-50">
                 <button
                     onClick={() => setDrawerOpen(!drawerOpen)}
                     className="ml-3"

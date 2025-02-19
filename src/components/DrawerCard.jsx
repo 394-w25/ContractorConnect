@@ -42,9 +42,7 @@ const DrawerCard = ({ width, height, img, name }) => {
               borderRadius: '5.164px',
               background: `url(${img}) lightgray 50% / cover no-repeat`,
               maxWidth: 345,
-              borderColor: 'black',
               border: 'blue'
-              
             }}
           />
           <CardContent>
