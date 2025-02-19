@@ -1,9 +1,8 @@
 import Drawer from '@mui/material/Drawer';
 import { DrawerCloseIcon } from "../lib/icons";
-import ActionAreaCard from './DrawerCard';
+import DrawerCard from './DrawerCard';
 import ContractorCard from './ContractorCard';
-import { contractors } from '../utilities/data'
-import Box from '@mui/material/Box';
+import { contractors, jobRequests } from '../utilities/data'
 
 
 const DrawerContainer = ({ drawerOpen, setDrawerOpen }) => {
@@ -17,13 +16,14 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen }) => {
                     width: 305,
                     boxSizing: 'border-box',
                 },
+                position: 'relative'
             }}
             variant="persistent"
             anchor="left"
             className=""
             open={drawerOpen}
         >
-            <div className="w-full h-[48px] bg-homieBlue flex flex-row items-center">
+            <div className="w-full h-[48px] bg-homieBlue flex flex-row items-center fixed top-0 left-0">
                 <button
                     onClick={() => setDrawerOpen(!drawerOpen)}
                     className="ml-3"
@@ -31,11 +31,25 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen }) => {
                     <DrawerCloseIcon />
                 </button>
             </div>
-            {/* <ActionAreaCard /> */}
+            <div className="w-full mt-[48px]">
+            {(jobRequests && Object.entries(jobRequests).length > 0) && 
+                <div className="flex flex-col gap-2 items-center">
+                    <span className="font-bold w-full text-start pl-4">
+                        Requests
+                    </span>
+                    {Object.entries(jobRequests).map((rq, idx) => (
+                        <DrawerCard
+                            width={150}
+                            height={51}
+                            img={rq[1].img}
+                            name={rq[1].name}
+                        />
+
+                    ))}
+                </div>
+            }
             {(contractors && Object.entries(contractors).length > 0) &&
                 <div className="flex flex-col gap-2 items-center">
-
-
                     <span className="font-bold w-full text-start pl-4">
                         Contractors
                     </span>
@@ -51,6 +65,7 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen }) => {
                     ))}
                 </div>
             }
+            </div>
         </Drawer>
     )
 }
