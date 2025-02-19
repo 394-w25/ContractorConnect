@@ -9,7 +9,7 @@ import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
 
 const ContractorCard = ({name, quote, imgUrl, height, width}) => {
-
+    console.log(imgUrl)
 
     return( <Card sx={{ 
         border: '2px solid #2511BE',
