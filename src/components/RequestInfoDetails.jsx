@@ -117,7 +117,7 @@ const RequestInfoDetails =() => {
             </Box>
 
             {/* Grid Layout */}
-            <Grid container spacing={3}>
+            <Grid container spacing={4}>
                 {gridData.map((item, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index}>
                         <Paper sx={{ 
@@ -145,6 +145,7 @@ const RequestInfoDetails =() => {
                 lineHeight: "16px", // or 1.14 for the percentage-based value
                 letterSpacing: "0.28px",
                 alignSelf: "stretch",
+                marginTop: 3
             }}>
                 Tell us a bit more about the project
             </Typography>
