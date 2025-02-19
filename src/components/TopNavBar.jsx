@@ -3,8 +3,7 @@ import { HomieIcon, DrawerOpenIcon } from "../lib/icons";
 import DrawerContainer from '../components/DrawerContainer'
 import RequestInfo from './RequestInfo'
 
-const TopNavBar = () => {
-
+const TopNavBar = ({modalOpen, setModalOpen}) => {
     const [index, setIndex] = useState(0);
     const [drawerOpen, setDrawerOpen] = useState(true);
 
@@ -27,7 +26,11 @@ const TopNavBar = () => {
 
             </div>
 
-            <RequestInfo isOpen={drawerOpen} index={index}/>
+            <RequestInfo 
+                isOpen={drawerOpen} 
+                index={index}
+                modalOpen={modalOpen}
+                setModalOpen={setModalOpen}/>
         </div>
       
     )
