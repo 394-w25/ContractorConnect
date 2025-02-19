@@ -1,11 +1,15 @@
 import Drawer from '@mui/material/Drawer';
-
+import TopNavBar from '../components/TopNavBar';
+import {useState} from 'react';
 
 const RequestPage = () => {
 
+    const [drawerOpen, setDrawerOpen] = useState(false);
+
     return (
-        <div className="flex flex-row w-full h-full bg-gray-200">
-            hi
+        <div className="flex flex-col w-full h-full bg-gray-200">
+            <TopNavBar />
+
             <Drawer
                 // sx={{
                 //     width: drawerWidth,
@@ -18,6 +22,7 @@ const RequestPage = () => {
                 variant="permanent"
                 anchor="left"
                 className="bg-black"
+                open={drawerOpen}
             ></Drawer>
         </div>
     )
