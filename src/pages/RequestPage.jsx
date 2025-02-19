@@ -1,16 +1,15 @@
-import Drawer from '@mui/material/Drawer';
 import TopNavBar from '../components/TopNavBar';
-import {useState} from 'react';
+
 
 const RequestPage = () => {
 
-    const [drawerOpen, setDrawerOpen] = useState(false);
+    // const [drawerOpen, setDrawerOpen] = useState(true);
 
     return (
         <div className="flex flex-col w-full h-full bg-gray-200">
             <TopNavBar />
 
-            <Drawer
+            {/* <Drawer
                 // sx={{
                 //     width: drawerWidth,
                 //     flexShrink: 0,
@@ -19,11 +18,16 @@ const RequestPage = () => {
                 //         boxSizing: 'border-box',
                 //     },
                 // }}
-                variant="permanent"
+                variant="persistent"
                 anchor="left"
                 className="bg-black"
                 open={drawerOpen}
-            ></Drawer>
+            >
+                <button>
+                    <DrawerIcon />
+                </button>
+
+            </Drawer> */}
         </div>
     )
 }
