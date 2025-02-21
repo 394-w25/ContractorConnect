@@ -5,10 +5,26 @@ import ContractorCard from "./ContractorCard";
 
 const BidsDisplay = ({setModalOpen, index}) => {
     
-    const {jobReqs} = useContext(jobRequestContext);
-    const jobRequest = jobReqs[index]
+    const {jobReqs, setJobReqs} = useContext(jobRequestContext);
+    let jobRequest = jobReqs[index]
 
-    const contract_list = jobRequest.contractorName ? Object.values(contractors).filter((contractor) => contractor.name === jobRequest.contractorName) : Object.values(contractors) 
+    const contract_list = jobRequest.contractorName ? 
+                        Object.values(contractors).filter((contractor) => contractor.name === jobRequest.contractorName) : 
+                        Object.values(contractors) 
+
+    const handleClick = () => {
+        if(jobRequest.contractorName !== null) {
+            jobRequest.contractorName = null 
+            console.log('asdfdsafsadf')
+            setJobReqs((prev) => {
+                return {...prev, [index] : jobRequest}
+            })
+        }
+        else {
+            setModalOpen(true)
+        }
+
+    }
     
     return (
 
@@ -24,7 +40,7 @@ const BidsDisplay = ({setModalOpen, index}) => {
                         type="checkbox"
                         className="ml-2 border-2 border-homieBlue focus:border-homieBlue scale-150"
                         checked={jobRequest.contractorName !== null}
-                        onClick={() => setModalOpen(true)}
+                        onClick={handleClick}
                         />
                     </label>
                 </div>
