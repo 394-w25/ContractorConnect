@@ -1,7 +1,15 @@
+import { useContext } from 'react'; 
+import { jobRequestContext } from '../pages/RequestPage';
 import { contractors } from "../utilities/data";
 import ContractorCard from "./ContractorCard";
 
-const BidsDisplay = ({setModalOpen, modalOpen}) => {
+const BidsDisplay = ({setModalOpen, modalOpen, index}) => {
+    
+    const {jobReqs} = useContext(jobRequestContext);
+    const jobRequest = jobReqs[index]
+
+    const contract_list = jobRequest.contractorName ? Object.values(contractors).filter((contractor) => contractor.name === jobRequest.contractorName) : Object.values(contractors) 
+    
     return (
 
         <div className="flex flex-col p-3 gap-y-2">
@@ -31,7 +39,7 @@ const BidsDisplay = ({setModalOpen, modalOpen}) => {
             </div>
 
             <p className="text-lg">Contractors</p>
-            {Object.values(contractors).map((contractor, idx) => <ContractorCard 
+            {contract_list.map((contractor, idx) => <ContractorCard 
                                                     key={idx}
                                                     name={contractor.name} 
                                                     quote={contractor.quote} 

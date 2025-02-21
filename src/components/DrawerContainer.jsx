@@ -3,7 +3,7 @@ import Drawer from '@mui/material/Drawer';
 import { DrawerCloseIcon } from "../lib/icons";
 import DrawerCard from './DrawerCard';
 import ContractorCard from './ContractorCard';
-import { contractors, jobRequests } from '../utilities/data';
+import { contractors } from '../utilities/data';
 import { jobRequestContext } from '../pages/RequestPage';
 
 
@@ -13,7 +13,13 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
         setIndex(index)
     }
 
-    const { jobReq, setJobReq } = useContext(jobRequestContext);
+    const { jobReqs } = useContext(jobRequestContext);
+
+
+    const activeProjects = Object.entries(jobReqs).filter(([index, request]) => request.contractorName !== null)
+    const activeRequests = Object.entries(jobReqs).filter(([index, request]) => request.contractorName === null ) 
+
+    console.log(activeRequests)
 
     return (
         <Drawer
@@ -40,14 +46,32 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
                 </button>
             </div>
             <div className="w-full mt-[48px]">
-            {(jobReq && Object.entries(jobReq).length > 0) && 
+            {(activeProjects && Object.entries(activeProjects).length > 0) && 
                 <div className="flex flex-col gap-2 items-center p-4">
                     <span className="font-bold w-full text-start">
                         Requests
                     </span>
-                    {Object.entries(jobRequests).map((rq, idx) => (
+                    {activeProjects.map(rq => (
                         <DrawerCard
-                            key={idx}
+                            key={rq[0]}
+                            width={'100%'}
+                            height={51}
+                            img={rq[1].img}
+                            name={rq[1].name}
+                            handleClick = {() => handleClick(rq[0])}
+                        />
+
+                    ))}
+                </div>
+            }
+            {(activeRequests && Object.entries(activeRequests).length > 0) && 
+                <div className="flex flex-col gap-2 items-center p-4">
+                    <span className="font-bold w-full text-start">
+                        Requests
+                    </span>
+                    {activeRequests.map(rq => (
+                        <DrawerCard
+                            key={rq[0]}
                             width={'100%'}
                             height={51}
                             img={rq[1].img}
