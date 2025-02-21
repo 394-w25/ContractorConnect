@@ -12,9 +12,9 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
         setIndex(index)
     }
 
-    const activeProjects = Object.values(jobRequests).filter(req => req.contractorName !== null);
+    const activeProjects = Object.values(jobRequests).filter(req => req.contractorIndex !== null);
 
-    const inactiveProjects = Object.values(jobRequests).filter(req => req.contractorName === null);
+    const inactiveProjects = Object.values(jobRequests).filter(req => req.contractorIndex === null);
 
 
 
