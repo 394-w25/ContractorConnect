@@ -14,7 +14,8 @@ const RequestInfo = ({isOpen, index, modalOpen, setModalOpen}) => {
 
             <div className="col-span-1">
                 <BidsDisplay setModalOpen={setModalOpen} 
-                             modalOpen={modalOpen}/>
+                             modalOpen={modalOpen}
+                             index={index}/>
             </div>
         </div>
     )

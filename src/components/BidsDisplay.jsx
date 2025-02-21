@@ -1,7 +1,10 @@
-import { contractors } from "../utilities/data";
+import { contractors,jobRequests } from "../utilities/data";
 import ContractorCard from "./ContractorCard";
 
-const BidsDisplay = ({setModalOpen, modalOpen}) => {
+const BidsDisplay = ({setModalOpen, modalOpen, index}) => {
+    index = jobRequests[index].contractorIndex
+    console.log('index')
+    console.log(index)
     return (
 
         <div className="flex flex-col p-3 gap-y-2">
@@ -31,14 +34,53 @@ const BidsDisplay = ({setModalOpen, modalOpen}) => {
             </div>
 
             <p className="text-lg">Contractors</p>
-            {Object.values(contractors).map((contractor, idx) => <ContractorCard 
+
+            {index === -1 ? 
+                Object.values(contractors).map((contractor, idx) => (
+                    <ContractorCard 
+                    key={idx}
+                    name={contractor.name} 
+                    quote={contractor.quote} 
+                    imgUrl={contractor.img} 
+                    width={'75%'} 
+                    height={'30'} 
+                    needsQuote={true} 
+                    />
+                )) 
+                : 
+                // <ContractorCard 
+                //     key={index}
+                //     name={contractors[index].name} 
+                //     quote={contractors[index].quote} 
+                //     imgUrl={contractors[index].img} 
+                //     width={'75%'} 
+                //     height={'30'} 
+                //     needsQuote={true} 
+                //     />
+                // <p>placeholder</p>
+                Object.values(contractors)[index] ? (
+                    <ContractorCard 
+                        key={index}
+                        name={Object.values(contractors)[index].name} 
+                        quote={Object.values(contractors)[index].quote} 
+                        imgUrl={Object.values(contractors)[index].img} 
+                        width={'75%'} 
+                        height={'30'} 
+                        needsQuote={true} 
+                    />
+                ) : (
+                    <p>No contractor found</p>
+                )
+
+                }
+            {/* {Object.values(contractors).map((contractor, idx) => <ContractorCard 
                                                     key={idx}
                                                     name={contractor.name} 
                                                     quote={contractor.quote} 
                                                     imgUrl={contractor.img} 
                                                     width={'75%'} 
                                                     height={'30'} 
-                                                    needsQuote={true} />)}
+                                                    needsQuote={true} />)} */}
 
         </div>
        
