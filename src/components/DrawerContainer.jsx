@@ -16,6 +16,8 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
 
     const inactiveProjects = Object.values(jobRequests).filter(req => req.contractorName === null);
 
+
+
     return (
         <Drawer
             sx={{
@@ -53,7 +55,7 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
                                 height={51}
                                 img={rq[1].img}
                                 name={rq[1].name}
-                                handleClick={() => handleClick(rq[0])}
+                                handleClick={() => handleClick(idx)}
                             />
 
                         ))}
@@ -71,7 +73,7 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
                                 height={51}
                                 img={rq[1].img}
                                 name={rq[1].name}
-                                handleClick={() => handleClick(rq[0])}
+                                handleClick={() => handleClick(idx)}
                             />
 
                         ))}

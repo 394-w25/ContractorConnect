@@ -9,16 +9,18 @@ import {
   CardMedia,
 } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
-import { contractors } from '../utilities/data';
+import { contractors, updateJobRequestContractorIndex } from '../utilities/data';
 import React, { useState } from "react";
 import ConfirmationUpdateModal from './ConfirmationUpdateModal';
 
-function CustomModal({ isOpen, onClose,onContractorSelect }) {
+function CustomModal({ isOpen, onClose,onContractorSelect, jobIndex }) {
   const [selectedContractor, setSelectedContractor] = useState(null);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
-  const handleContractorSelect = (contractor) => {
+  const handleContractorSelect = (contractor, contractorIndex) => {
     setSelectedContractor(contractor);
+    updateJobRequestContractorIndex(jobIndex, contractorIndex);
+
     if (onContractorSelect) {
       onContractorSelect(contractor); // Call the parent callback
     }
@@ -61,7 +63,7 @@ function CustomModal({ isOpen, onClose,onContractorSelect }) {
             <Grid item xs={6} key={index}>
               <Button
                 fullWidth
-                onClick={() => handleContractorSelect(contractor)}
+                onClick={() => handleContractorSelect(contractor, index)}
                 sx={{ 
                   p: 0,
                   textTransform: 'none',
