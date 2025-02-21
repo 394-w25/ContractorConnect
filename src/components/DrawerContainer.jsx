@@ -1,8 +1,10 @@
+import { useContext } from 'react';
 import Drawer from '@mui/material/Drawer';
 import { DrawerCloseIcon } from "../lib/icons";
 import DrawerCard from './DrawerCard';
 import ContractorCard from './ContractorCard';
-import { contractors, jobRequests } from '../utilities/data'
+import { contractors, jobRequests } from '../utilities/data';
+import { jobRequestContext } from '../pages/RequestPage';
 
 
 const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
@@ -10,6 +12,8 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
     const handleClick = (index) => {
         setIndex(index)
     }
+
+    const { jobReq, setJobReq } = useContext(jobRequestContext);
 
     return (
         <Drawer
@@ -36,7 +40,7 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
                 </button>
             </div>
             <div className="w-full mt-[48px]">
-            {(jobRequests && Object.entries(jobRequests).length > 0) && 
+            {(jobReq && Object.entries(jobReq).length > 0) && 
                 <div className="flex flex-col gap-2 items-center p-4">
                     <span className="font-bold w-full text-start">
                         Requests
