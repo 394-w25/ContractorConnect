@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Modal,
   Box,
@@ -11,9 +10,22 @@ import {
 } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import { contractors } from '../utilities/data';
+import React, { useState } from "react";
+import ConfirmationUpdateModal from './ConfirmationUpdateModal';
 
-const CustomModal = ({ isOpen, onClose }) => {
+function CustomModal({ isOpen, onClose,onContractorSelect }) {
+  const [selectedContractor, setSelectedContractor] = useState(null);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+
+  const handleContractorSelect = (contractor) => {
+    setSelectedContractor(contractor);
+    if (onContractorSelect) {
+      onContractorSelect(contractor); // Call the parent callback
+    }
+  };
+
   return (
+    <>
     <Modal open={isOpen} onClose={onClose} aria-labelledby="modal-title">
       <Box
         sx={{
@@ -37,6 +49,7 @@ const CustomModal = ({ isOpen, onClose }) => {
           </Typography>
         </Box>
 
+
         {/* Message */}
         <Typography variant="body1" mb={3}>
           Glad we could help you find someone. Which contractor did you select?
@@ -46,6 +59,17 @@ const CustomModal = ({ isOpen, onClose }) => {
         <Grid container spacing={2}>
           {Object.values(contractors).map((contractor, index) => (
             <Grid item xs={6} key={index}>
+              <Button
+                fullWidth
+                onClick={() => handleContractorSelect(contractor)}
+                sx={{ 
+                  p: 0,
+                  textTransform: 'none',
+                  '&:hover': {
+                    backgroundColor: 'transparent',
+                  }
+                }}
+              >
               <Card
                 sx={{
                   border: "2px solid blue",
@@ -82,6 +106,7 @@ const CustomModal = ({ isOpen, onClose }) => {
                   </Typography>
                 </CardContent>
               </Card>
+              </Button>
             </Grid>
           ))}
         </Grid>
@@ -103,6 +128,11 @@ const CustomModal = ({ isOpen, onClose }) => {
         </Button>
       </Box>
     </Modal>
+    <ConfirmationUpdateModal 
+      isOpen={showConfirmationModal} 
+      onClose={() => setShowConfirmationModal(false)}
+    />
+  </>
   );
 };
 
