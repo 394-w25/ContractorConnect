@@ -1,11 +1,20 @@
 import { useState } from 'react';
 import { HomieIcon, DrawerOpenIcon } from "../lib/icons";
 import DrawerContainer from '../components/DrawerContainer'
-import RequestInfo from './RequestInfo'
+import RequestInfo from './RequestInfo';
+import ConfirmationModal from '../components/ConfirmationModal';
+import ConfirmationUpdateModal from '../components/ConfirmationUpdateModal';
 
-const TopNavBar = ({modalOpen, setModalOpen}) => {
+const TopNavBar = () => {
     const [index, setIndex] = useState(0);
     const [drawerOpen, setDrawerOpen] = useState(true);
+    const [open, setOpen] = useState(false);
+    const [showConfirmationUpdate, setShowConfirmationUpdate] = useState(false);
+
+    const handleContractorSelect = (contractor) => {
+        setOpen(false); // Close the first modal
+        setShowConfirmationUpdate(true); // Open the confirmation update modal
+    };
 
     return (
         <div>
@@ -29,8 +38,27 @@ const TopNavBar = ({modalOpen, setModalOpen}) => {
             <RequestInfo 
                 isOpen={drawerOpen} 
                 index={index}
-                modalOpen={modalOpen}
-                setModalOpen={setModalOpen}/>
+                setModalOpen={setOpen}/>
+
+
+            {/* Remove this standalone ConfirmationModal as it's duplicated */}
+            {/* <ConfirmationModal /> */}
+            
+            {open && (
+                <div style={{ textAlign: "center", marginTop: "100px" }}>
+                    <ConfirmationModal 
+                        isOpen={open} 
+                        onClose={() => setOpen(false)}
+                        onContractorSelect={handleContractorSelect}
+                        index = {index}
+                    />
+                </div>
+            )}
+
+            <ConfirmationUpdateModal 
+                isOpen={showConfirmationUpdate}
+                onClose={() => setShowConfirmationUpdate(false)}
+            />    
         </div>
       
     )

@@ -19,7 +19,7 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
     const activeProjects = Object.entries(jobReqs).filter(([index, request]) => request.contractorName !== null)
     const activeRequests = Object.entries(jobReqs).filter(([index, request]) => request.contractorName === null ) 
 
-    console.log(activeRequests)
+    console.log(activeProjects)
 
     return (
         <Drawer
@@ -49,7 +49,7 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
             {(activeProjects && Object.entries(activeProjects).length > 0) && 
                 <div className="flex flex-col gap-2 items-center p-4">
                     <span className="font-bold w-full text-start">
-                        Requests
+                        Active Projects
                     </span>
                     {activeProjects.map(rq => (
                         <DrawerCard

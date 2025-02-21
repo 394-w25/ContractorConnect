@@ -3,7 +3,7 @@ import { jobRequestContext } from '../pages/RequestPage';
 import { contractors } from "../utilities/data";
 import ContractorCard from "./ContractorCard";
 
-const BidsDisplay = ({setModalOpen, modalOpen, index}) => {
+const BidsDisplay = ({setModalOpen, index}) => {
     
     const {jobReqs} = useContext(jobRequestContext);
     const jobRequest = jobReqs[index]
@@ -23,7 +23,7 @@ const BidsDisplay = ({setModalOpen, modalOpen, index}) => {
                         <input
                         type="checkbox"
                         className="ml-2 border-2 border-homieBlue focus:border-homieBlue scale-150"
-                        checked={modalOpen}
+                        checked={jobRequest.contractorName !== null}
                         onClick={() => setModalOpen(true)}
                         />
                     </label>

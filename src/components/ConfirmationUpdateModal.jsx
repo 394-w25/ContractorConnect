@@ -4,7 +4,6 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import { HomieIcon } from "../lib/icons";
 
 const ConfirmationUpdateModal = ({ isOpen, onClose }) => {
