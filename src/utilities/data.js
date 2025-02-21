@@ -18,7 +18,9 @@ export const jobRequests = {
         schedule: "ASAP",
         otherServices: "None",
         desc: "Want to reapint my soon's room. Needs to be a shade a green because that's his favorite color. Walls are good condition",
-        img: "https://s42814.pcdn.co/wp-content/uploads/2020/01/Idea-House_Nov-2018_pg-46.0-1-scaled.jpg.optimal.jpg"
+        img: "https://s42814.pcdn.co/wp-content/uploads/2020/01/Idea-House_Nov-2018_pg-46.0-1-scaled.jpg.optimal.jpg",
+        contractorName: null,
+        
     }, 
 
     1 : {
@@ -38,7 +40,8 @@ export const jobRequests = {
         schedule: "Within 1 Week",
         otherServices: "Trim Painting",
         desc: "The home office needs a fresh coat of eggshell paint in a single color. The walls have minor damage and require patching before painting. Additionally, the trim will be painted to match the new wall color. The job should be completed within 1 week.",
-        img: "https://st.hzcdn.com/simgs/99a1989c01d8792d_14-3218/_.jpg"
+        img: "https://st.hzcdn.com/simgs/99a1989c01d8792d_14-3218/_.jpg",
+        contractorName: "Connor Construct LLC",
     },
 
     2: {
@@ -87,5 +90,28 @@ export const contractors = {
         name : "Best Painters, LLC", 
         quote  : 360,
         img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtJnY35iEzFPyhx32Lf_XLJH3OTvLtFScy1w&s"
+    }
+}
+
+export const activeProjects = {
+    0 : {
+        name: "Son's Room", 
+        isIndoor: "Indoor",
+        sqft: 1000,
+        ceilingHeight: {
+            ft: 8,
+            in: 2
+        },
+        wallMaterial: "Drywall", 
+        paintType: "Glossy", 
+        numColors: 2,
+        preperationNeeded: "None",
+        wallCondition: "Clean & Smooth",
+        numCoats: 2,
+        schedule: "ASAP",
+        otherServices: "None",
+        desc: "Want to reapint my soon's room. Needs to be a shade a green because that's his favorite color. Walls are good condition",
+        img: "https://s42814.pcdn.co/wp-content/uploads/2020/01/Idea-House_Nov-2018_pg-46.0-1-scaled.jpg.optimal.jpg",
+        contractorName: "Connor Construct LLC",
     }
 }
