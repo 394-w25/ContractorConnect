@@ -10,20 +10,19 @@ import { jobRequests } from '../utilities/data';
 
 
 const DrawerCard = ({ width, height, img, name, handleClick }) => {
-  
+
   console.log(img);
-  
+
   return (
-    <Box 
-      onClick = {handleClick}
+    <Box
+      onClick={handleClick}
       sx={{
-      width: '100%'
-    }}>
+        width: '100%'
+      }}>
       <Card sx={{
         width: { width },
         // height: { height },
         display: "flex",
-        padding: "12px",
         alignItems: "center",
         gap: "10px",
         alignSelf: "stretch",
@@ -31,7 +30,9 @@ const DrawerCard = ({ width, height, img, name, handleClick }) => {
         border: '2px solid #2511BE',
         marginBottom: '8px'
       }}>
-        <CardActionArea>
+        <CardActionArea sx={{
+          padding: '12px'
+        }}>
           <CardMedia
             component="img"
             height={height}
@@ -70,7 +71,7 @@ const DrawerCard = ({ width, height, img, name, handleClick }) => {
         </CardActionArea>
       </Card>
 
-    </Box>
+    </Box >
 
   );
 }
