@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import {
   Modal,
   Box,
@@ -12,12 +13,21 @@ import { CheckCircle } from "@mui/icons-material";
 import { contractors } from '../utilities/data';
 import React, { useState } from "react";
 import ConfirmationUpdateModal from './ConfirmationUpdateModal';
+import { jobRequestContext } from "../pages/RequestPage";
 
-function CustomModal({ isOpen, onClose,onContractorSelect }) {
+function CustomModal({ isOpen, onClose,onContractorSelect, index }) {
   const [selectedContractor, setSelectedContractor] = useState(null);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const { setJobReqs } = useContext(jobRequestContext);
 
   const handleContractorSelect = (contractor) => {
+    setJobReqs((prev) => {
+      let jobRequest  = prev[index]
+      jobRequest.contractorName = contractor.name
+      return {...prev, [index] : jobRequest}
+    })
+
+
     setSelectedContractor(contractor);
     if (onContractorSelect) {
       onContractorSelect(contractor); // Call the parent callback

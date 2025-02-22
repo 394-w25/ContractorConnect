@@ -1,7 +1,32 @@
+import { useContext } from 'react'; 
+import { jobRequestContext } from '../pages/RequestPage';
 import { contractors } from "../utilities/data";
 import ContractorCard from "./ContractorCard";
 
-const BidsDisplay = ({setModalOpen, modalOpen}) => {
+const BidsDisplay = ({setModalOpen, index}) => {
+    
+    console.log(index);
+    const {jobReqs, setJobReqs} = useContext(jobRequestContext);
+    let jobRequest = jobReqs[index]
+
+    const contract_list = jobRequest.contractorName ? 
+                        Object.values(contractors).filter((contractor) => contractor.name === jobRequest.contractorName) : 
+                        Object.values(contractors) 
+
+    const handleClick = () => {
+        if(jobRequest.contractorName !== null) {
+            jobRequest.contractorName = null 
+            console.log('asdfdsafsadf')
+            setJobReqs((prev) => {
+                return {...prev, [index] : jobRequest}
+            })
+        }
+        else {
+            setModalOpen(true)
+        }
+
+    }
+    
     return (
 
         <div className="flex flex-col p-3 gap-y-2">
@@ -15,8 +40,8 @@ const BidsDisplay = ({setModalOpen, modalOpen}) => {
                         <input
                         type="checkbox"
                         className="ml-2 border-2 border-homieBlue focus:border-homieBlue scale-150"
-                        checked={modalOpen}
-                        onClick={() => setModalOpen(true)}
+                        checked={jobRequest.contractorName !== null}
+                        onClick={handleClick}
                         />
                     </label>
                 </div>
@@ -31,7 +56,7 @@ const BidsDisplay = ({setModalOpen, modalOpen}) => {
             </div>
 
             <p className="text-lg">Contractors</p>
-            {Object.values(contractors).map((contractor, idx) => <ContractorCard 
+            {contract_list.map((contractor, idx) => <ContractorCard 
                                                     key={idx}
                                                     name={contractor.name} 
                                                     quote={contractor.quote} 

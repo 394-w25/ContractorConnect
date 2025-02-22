@@ -1,7 +1,7 @@
 import BidsDisplay from './BidsDisplay';
 import RequestInfoDetails from './RequestInfoDetails'
 
-const RequestInfo = ({isOpen, index, modalOpen, setModalOpen}) => {
+const RequestInfo = ({isOpen, index, setModalOpen}) => {
     const leftMargin = isOpen ? "ml-[305px] " : "ml-0 ";
     const width = isOpen ?  "w" + (window.innerWidth - 305).toString() : "w-full";
 
@@ -14,7 +14,7 @@ const RequestInfo = ({isOpen, index, modalOpen, setModalOpen}) => {
 
             <div className="col-span-1">
                 <BidsDisplay setModalOpen={setModalOpen} 
-                             modalOpen={modalOpen}/>
+                             index={index}/>
             </div>
         </div>
     )
