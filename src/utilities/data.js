@@ -18,9 +18,7 @@ export const jobRequests = {
         schedule: "ASAP",
         otherServices: "None",
         desc: "Want to reapint my soon's room. Needs to be a shade a green because that's his favorite color. Walls are good condition",
-        img: "https://s42814.pcdn.co/wp-content/uploads/2020/01/Idea-House_Nov-2018_pg-46.0-1-scaled.jpg.optimal.jpg",
-        contractorName: null,
-        
+        img: "https://s42814.pcdn.co/wp-content/uploads/2020/01/Idea-House_Nov-2018_pg-46.0-1-scaled.jpg.optimal.jpg"
     }, 
 
     1 : {
@@ -92,5 +90,7 @@ export const contractors = {
         quote  : 360,
         img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtJnY35iEzFPyhx32Lf_XLJH3OTvLtFScy1w&s"
     }
+
 }
+
 

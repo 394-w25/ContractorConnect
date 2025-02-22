@@ -87,16 +87,31 @@ function CustomModal({ isOpen, onClose,onContractorSelect, index }) {
                   cursor: "pointer",
                   textAlign: "center",
                   p: 1,
+                  height: '100%', 
+                  display: 'flex',
+                  flexDirection: 'column'
                 }}
               >
+                <Box sx={{ 
+                  width: '100%',
+                  height: 160, 
+                  position: 'relative' 
+                }}>
                 {/* Ensure image URLs are correctly used */}
                 <CardMedia
                   component="img"
                   height="80"
                   image={contractor.img} // Image from data.js
                   alt={contractor.name}
-                  sx={{ borderRadius: 1 }}
+                  sx={{ 
+                    borderRadius: 1,
+                    height: '100%',
+                    width: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center'
+                  }}
                 />
+                </Box>
                 <CardContent sx={{ p: 1 }}>
                   <Typography
                     variant="body2"
