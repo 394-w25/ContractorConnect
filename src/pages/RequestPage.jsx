@@ -3,11 +3,9 @@ import TopNavBar from '../components/TopNavBar';
 import ConfirmationModal from '../components/ConfirmationModal';
 import ConfirmationUpdateModal from '../components/ConfirmationUpdateModal';
 import { Button } from "@mui/material";
-// import { useState } from 'react';
 
 const RequestPage = () => {
     const [open, setOpen] = useState(false);
-    const [index, setIndex] = useState(0);
     const [showConfirmationUpdate, setShowConfirmationUpdate] = useState(false);
 
     const handleContractorSelect = (contractor) => {
@@ -20,10 +18,10 @@ const RequestPage = () => {
             <TopNavBar 
                 modalOpen={open}
                 setModalOpen={setOpen}
-                index ={index}
-                setIndex={setIndex}
             />
             
+            {/* Remove this standalone ConfirmationModal as it's duplicated */}
+            {/* <ConfirmationModal /> */}
             
             {open && (
                 <div style={{ textAlign: "center", marginTop: "100px" }}>
@@ -31,7 +29,6 @@ const RequestPage = () => {
                         isOpen={open} 
                         onClose={() => setOpen(false)}
                         onContractorSelect={handleContractorSelect}
-                        jobIndex = {index}
                     />
                 </div>
             )}
