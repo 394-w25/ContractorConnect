@@ -22,7 +22,7 @@ function CustomModal({ isOpen, onClose,onContractorSelect, index }) {
 
   const handleContractorSelect = (contractor) => {
     setJobReqs((prev) => {
-      let jobRequest  = prev[0]
+      let jobRequest  = prev[index]
       jobRequest.contractorName = contractor.name
       return {...prev, [index] : jobRequest}
     })

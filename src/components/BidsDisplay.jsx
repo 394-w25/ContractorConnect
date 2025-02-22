@@ -5,6 +5,7 @@ import ContractorCard from "./ContractorCard";
 
 const BidsDisplay = ({setModalOpen, index}) => {
     
+    console.log(index);
     const {jobReqs, setJobReqs} = useContext(jobRequestContext);
     let jobRequest = jobReqs[index]
 
