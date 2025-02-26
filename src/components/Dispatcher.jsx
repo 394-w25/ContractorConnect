@@ -10,6 +10,18 @@ export const userContext = createContext();
 const Dispatcher = () => {
     // Add user auth as needed
     const [user, loading] = useAuthState(); 
+    const [data, dataError] = useDbData(`/homeowners/${user.uid}`);
+    const [update, result] = useDbUpdate(`/homeowners/${user.uid}`);
+   
+    while  (data === undefined )
+        
+    if (!data) {
+        update({
+            email: user.email,
+            name: user.displayName,
+        })
+    }
+
 
     return user ? (
         <userContext.Provider value = {user}>
