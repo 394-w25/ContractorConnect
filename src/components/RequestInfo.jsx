@@ -4,9 +4,11 @@ import RequestInfoDetails from './RequestInfoDetails'
 import ConfirmationModal from './ConfirmationModal';
 import ConfirmationUpdateModal from './ConfirmationUpdateModal';
 
-const RequestInfo = ({isOpen, index}) => {
-    const leftMargin = isOpen ? "ml-[305px] " : "ml-0 ";
-    const width = isOpen ?  "w" + (window.innerWidth - 305).toString() : "w-full";
+const RequestInfo = ({isDrawerOpen, index}) => {
+    console.log(isDrawerOpen);
+    const leftMargin = isDrawerOpen ? "ml-[305px] " : "ml-0 ";
+    console.log(leftMargin)
+    const width = isDrawerOpen ?  "w" + (window.innerWidth - 305).toString() : "w-full";
 
     const [open, setOpen] = useState(false);
     const [showConfirmationUpdate, setShowConfirmationUpdate] = useState(false);

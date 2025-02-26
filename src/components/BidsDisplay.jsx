@@ -1,11 +1,10 @@
 import { useContext } from 'react'; 
-import { jobRequestContext } from '../pages/RequestPage';
+import { jobRequestContext } from './Dispatcher';
 import { contractors } from "../utilities/data";
 import ContractorCard from "./ContractorCard";
 
 const BidsDisplay = ({setModalOpen, index}) => {
     
-    console.log(index);
     const {jobReqs, setJobReqs} = useContext(jobRequestContext);
     let jobRequest = jobReqs[index]
 

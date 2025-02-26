@@ -4,9 +4,7 @@ import DrawerContainer from '../components/DrawerContainer'
 import RequestInfo from './RequestInfo';
 
 
-const TopNavBar = () => {
-    const [index, setIndex] = useState(0);
-    const [drawerOpen, setDrawerOpen] = useState(true);
+const TopNavBar = ({drawerOpen, setDrawerOpen, index, setIndex}) => {
 
     return (
         <div>

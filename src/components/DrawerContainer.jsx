@@ -4,7 +4,7 @@ import { DrawerCloseIcon } from "../lib/icons";
 import DrawerCard from './DrawerCard';
 import ContractorCard from './ContractorCard';
 import { contractors } from '../utilities/data';
-import { jobRequestContext } from '../pages/RequestPage';
+import { jobRequestContext } from './Dispatcher';
 
 
 const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {

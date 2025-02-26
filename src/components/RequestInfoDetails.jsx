@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 
 
 const RequestInfoDetails =({index}) => {
+    console.log(index);
     const title = jobRequests[index].name;
     const img = jobRequests[index].img;
     const {

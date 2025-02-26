@@ -1,24 +1,35 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate  } from "react-router-dom";
 import RequestPage from '../pages/RequestPage';
 import LandingPage from '../pages/LandingPage'; 
+import TestPage from '../pages/TestPage';
 import TopNavBar from './TopNavBar';
 import { useAuthState } from '../utilities/firebase';
+import { jobRequests } from '../utilities/data.js'
+
 
 
 export const userContext = createContext();
+export const jobRequestContext = createContext(); 
+
 
 const Dispatcher = () => {
     // Add user auth as needed
     const [user, loading] = useAuthState(); 
+    const [index, setIndex] = useState(0);
+    const [jobReqs, setJobReqs] = useState(jobRequests); 
+    const [drawerOpen, setDrawerOpen] = useState(true);
 
+    
     return user ? (
         <userContext.Provider value = {user}>
-              <TopNavBar /> 
-              <Routes>
-                <Route path="/" element={<RequestPage />} /> 
-                {/* Add as needed */}
-            </Routes>
+            <jobRequestContext.Provider value={{jobReqs, setJobReqs}}>
+                <TopNavBar index={index} setIndex={setIndex} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/> 
+                <Routes>
+                    <Route path="/" element={<RequestPage index={index} isDrawerOpen={drawerOpen}/>} /> 
+                    <Route path="/test" element={<TestPage />} />
+                </Routes>
+            </jobRequestContext.Provider>
         </userContext.Provider>
       
     ) : (
