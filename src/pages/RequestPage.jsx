@@ -1,21 +1,15 @@
-import React, { useState, createContext } from "react";
-import TopNavBar from '../components/TopNavBar';
-import { jobRequests } from '../utilities/data.js'
+import RequestInfo from '../components/RequestInfo.jsx';
 
 
-export const jobRequestContext = createContext(); 
+const RequestPage = ({index, isDrawerOpen}) => {
+    const width = isDrawerOpen ?  "w" + (window.innerWidth - 305).toString() : "w-full";
+    const leftMargin = isDrawerOpen ? "ml-[305px] " : "ml-0 ";
 
-const RequestPage = () => {
-    const [jobReqs, setJobReqs] = useState(jobRequests); 
-    console.log(jobReqs)
 
     return (
-        <jobRequestContext.Provider value={{jobReqs, setJobReqs}}>
-            <div className="flex flex-col w-full h-full bg-gray-200">
-                <TopNavBar />
-                 
-            </div>
-        </jobRequestContext.Provider>
+        <div className={"flex flex-col bg-gray-200 " + leftMargin + width}>
+            <RequestInfo index={index} isDrawerOpen={isDrawerOpen} />
+        </div>
     );
 };
 
