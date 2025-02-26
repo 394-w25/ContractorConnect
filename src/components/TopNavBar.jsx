@@ -4,12 +4,12 @@ import DrawerContainer from '../components/DrawerContainer'
 import RequestInfo from './RequestInfo';
 
 
-const TopNavBar = ({drawerOpen, setDrawerOpen, index, setIndex}) => {
+const TopNavBar = ({drawerOpen, setDrawerOpen, setIndex}) => {
 
-    const rightMargin = drawerOpen ? "ml-[305px] " : "ml-0 ";
+
 
     return (
-        <div className={rightMargin}>
+        <div>
             <div className="h-[48px] bg-homieBlue text-white flex flex-row items-center gap-2 z-50">
             <button 
                 onClick={() => setDrawerOpen(!drawerOpen)}
@@ -27,9 +27,6 @@ const TopNavBar = ({drawerOpen, setDrawerOpen, index, setIndex}) => {
 
             </div>
 
-            <RequestInfo 
-                isOpen={drawerOpen} 
-                index={index}/>
 
         </div>
       

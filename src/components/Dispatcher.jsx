@@ -1,8 +1,7 @@
 import { createContext, useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate  } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import RequestPage from '../pages/RequestPage';
 import LandingPage from '../pages/LandingPage'; 
-import TestPage from '../pages/TestPage';
 import TopNavBar from './TopNavBar';
 import { useAuthState } from '../utilities/firebase';
 import { jobRequests } from '../utilities/data.js'
@@ -20,6 +19,8 @@ const Dispatcher = () => {
     const [jobReqs, setJobReqs] = useState(jobRequests); 
     const [drawerOpen, setDrawerOpen] = useState(true);
 
+    console.log("Current path:", window.location.pathname);
+
     
     return user ? (
         <userContext.Provider value = {user}>
@@ -27,11 +28,10 @@ const Dispatcher = () => {
                 <TopNavBar index={index} setIndex={setIndex} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/> 
                 <Routes>
                     <Route path="/" element={<RequestPage index={index} isDrawerOpen={drawerOpen}/>} /> 
-                    <Route path="/test" element={<TestPage />} />
                 </Routes>
             </jobRequestContext.Provider>
         </userContext.Provider>
-      
+
     ) : (
         <Routes>
             <Route path="*" element={<LandingPage />}/>
