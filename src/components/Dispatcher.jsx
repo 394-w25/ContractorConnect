@@ -5,6 +5,8 @@ import LandingPage from '../pages/LandingPage';
 import TopNavBar from './TopNavBar';
 import { useAuthState } from '../utilities/firebase';
 import { jobRequests } from '../utilities/data.js'
+import { useDbData } from '../utilities/firebase';
+import { useDbUpdate } from '../utilities/firebase';
 
 
 
@@ -15,17 +17,7 @@ export const jobRequestContext = createContext();
 const Dispatcher = () => {
     // Add user auth as needed
     const [user, loading] = useAuthState(); 
-    const [data, dataError] = useDbData(`/homeowners/${user.uid}`);
-    const [update, result] = useDbUpdate(`/homeowners/${user.uid}`);
-   
-    while  (data === undefined )
-        
-    if (!data) {
-        update({
-            email: user.email,
-            name: user.displayName,
-        })
-    }
+
 
     const [index, setIndex] = useState(0);
     const [jobReqs, setJobReqs] = useState(jobRequests); 
