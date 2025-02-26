@@ -8,7 +8,6 @@ const TopNavBar = () => {
     const [index, setIndex] = useState(0);
     const [drawerOpen, setDrawerOpen] = useState(true);
 
-
     return (
         <div>
             <div className="h-[48px] bg-homieBlue text-white flex flex-row items-center gap-2 z-50">
