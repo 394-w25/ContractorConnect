@@ -28,6 +28,8 @@ const config = {
         Homie Paint Project Assistant
       </div>
     ),
+    // botAvatar: (props) => <></>,
+    // userAvatar: (props) => <></>
   },
 };
 
