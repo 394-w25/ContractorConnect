@@ -6,10 +6,10 @@ import {
 } from "@mui/material";
 import { HomieIcon } from "../lib/icons";
 
-const ConfirmationUpdateModal = ({ isOpen, onClose }) => {
+const ChatBox = ({ isOpen, onClose }) => {
     console.log('entered')
   return (
-    <Modal open={isOpen} onClose={onClose} aria-labelledby="confirmation-modal">
+    <Modal open={isOpen} onClose={onClose} aria-labelledby="chatbox-modal">
       <Box
         sx={{
           position: "absolute",
@@ -24,18 +24,6 @@ const ConfirmationUpdateModal = ({ isOpen, onClose }) => {
           textAlign: "center",
         }}
       >
-        {/* Header */}
-        <Box display="flex" alignItems="center" justifyContent="center" mb={2}>
-        <HomieIcon />
-          <Typography variant="h5" fontWeight="bold">
-            Confirmed!
-          </Typography>
-        </Box>
-
-        {/* Message */}
-        <Typography variant="body1">
-          Updating your information ...
-        </Typography>
       </Box>
     </Modal>
   );
