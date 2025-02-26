@@ -11,16 +11,14 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   };
 
   const handleProjectTitle = (projectTitle) => {
-    // Acknowledge receiving the title
     const botMessage = createChatBotMessage(`Great! Your project "${projectTitle}" has been saved. Now, what is your property name?`);
     
-    // Store the project title in state and add the new message
     setState((prev) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
       projectData: {
-        ...prev.projectData, // Preserve any existing project data
-        title: projectTitle, // Store the project title
+        ...prev.projectData, 
+        title: projectTitle, 
       },
     }));
   };
@@ -54,36 +52,31 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const handleWallDimensions = (wallDimensionsString) => {
     
     const wallDimensionsArray = wallDimensionsString.split(',').map(dim => {
-      // Clean and normalize the string
       const cleanDim = dim.trim().toLowerCase();
-      
-      // Extract numerical values using regex
       const match = cleanDim.match(/(\d+)x(\d+)(ft|m|cm)?/);
       
       if (match) {
         return {
           width: parseInt(match[1], 10),
           height: parseInt(match[2], 10),
-          unit: match[3] || 'ft', // Default to ft if no unit specified
+          unit: match[3] || 'ft', 
         };
       }
       return null;
-    }).filter(Boolean); // Remove any null values
+    }).filter(Boolean); 
   
-    // Create a message acknowledging the dimensions
     const wallsText = wallDimensionsArray.length === 1 
       ? "wall" 
       : "walls";
     
     const botMessage = createChatBotMessage(`I've recorded ${wallDimensionsArray.length} ${wallsText} with the dimensions you provided.`);
     
-    // Update state with the new wall dimensions
     setState((prev) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
       projectData: {
         ...prev.projectData,
-        walls: wallDimensionsArray, // Store as an array of wall objects
+        walls: wallDimensionsArray, 
         wallCount: wallDimensionsArray.length,
       },
     }));
@@ -91,10 +84,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
   const displayProjectInfo = () => {
     setState((prev) => {
-      // Access project data from the prev (current state)
       const projectData = prev.projectData;
       
-      // Make sure walls exist before trying to map over them
       if (!projectData.walls || projectData.walls.length === 0) {
         const botMessage = createChatBotMessage(
           `Project "${projectData.title}" has been created, but no wall dimensions have been added yet.`
@@ -104,15 +95,14 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
           messages: [...prev.messages, botMessage],
         };
       }
-      
-      // Format the wall dimensions into a readable string
+
       const wallDimensionsText = projectData.walls.map((wall, index) => {
         return `Wall ${index + 1}: ${wall.width}x${wall.height} ${wall.unit}`;
       }).join(', ');
       
-      // Create the message with all project information
       const botMessage = createChatBotMessage(
         `Great! Here's a summary of your project "${projectData.title}":
+        • Property name: ${projectData.propertyName}
         • Number of walls: ${projectData.wallCount}
         • Wall dimensions: ${wallDimensionsText}`
       );
