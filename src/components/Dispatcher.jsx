@@ -1,26 +1,36 @@
-import { createContext } from 'react';
-import { BrowserRouter, Routes, Route, Navigate  } from "react-router-dom";
+import { createContext, useState } from 'react';
+import { Routes, Route } from "react-router-dom";
 import RequestPage from '../pages/RequestPage';
 import LandingPage from '../pages/LandingPage'; 
 import NewProjectPage from '../pages/NewProjectPage';
+import TopNavBar from './TopNavBar';
 import { useAuthState } from '../utilities/firebase';
-
+import { jobRequests } from '../utilities/data.js'
 
 export const userContext = createContext();
+export const jobRequestContext = createContext(); 
 
 const Dispatcher = () => {
     // Add user auth as needed
     const [user, loading] = useAuthState(); 
+    const [index, setIndex] = useState(0);
+    const [jobReqs, setJobReqs] = useState(jobRequests); 
+    const [drawerOpen, setDrawerOpen] = useState(true);
 
+    console.log("Current path:", window.location.pathname);
+
+    
     return user ? (
         <userContext.Provider value = {user}>
-              <Routes>
-                <Route path="/" element={<RequestPage />} /> 
-                <Route path="/newproject" element={<NewProjectPage />} />
-                {/* Add as needed */}
-            </Routes>
+            <jobRequestContext.Provider value={{jobReqs, setJobReqs}}>
+                <TopNavBar index={index} setIndex={setIndex} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/> 
+                <Routes>
+                    <Route path="/" element={<RequestPage index={index} isDrawerOpen={drawerOpen}/>} /> 
+                    <Route path="/newproject" element={<NewProjectPage />} />
+                </Routes>
+            </jobRequestContext.Provider>
         </userContext.Provider>
-      
+
     ) : (
         <Routes>
             <Route path="*" element={<LandingPage />}/>
