@@ -1,7 +1,7 @@
 import React, { useState, createContext } from "react";
 import TopNavBar from '../components/TopNavBar';
-import { jobRequests } from '../utilities/data.js'
-
+import RequestInfo from '../components/RequestInfo.jsx'
+import { jobRequests } from '../utilities/data.js';
 
 export const jobRequestContext = createContext(); 
 
@@ -12,7 +12,7 @@ const RequestPage = () => {
     return (
         <jobRequestContext.Provider value={{jobReqs, setJobReqs}}>
             <div className="flex flex-col w-full h-full bg-gray-200">
-                <TopNavBar />
+                <TopNavBar Page={(drawerOpen, index) => <RequestInfo isOpen={drawerOpen} index={index}/>} />
                  
             </div>
         </jobRequestContext.Provider>

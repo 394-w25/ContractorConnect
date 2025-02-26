@@ -4,7 +4,7 @@ import DrawerContainer from '../components/DrawerContainer'
 import RequestInfo from './RequestInfo';
 
 
-const TopNavBar = () => {
+const TopNavBar = ({ Page }) => {
     const [index, setIndex] = useState(0);
     const [drawerOpen, setDrawerOpen] = useState(true);
 
@@ -28,9 +28,7 @@ const TopNavBar = () => {
 
             </div>
 
-            <RequestInfo 
-                isOpen={drawerOpen} 
-                index={index}/>
+            {Page(drawerOpen, index)}
 
         </div>
       
