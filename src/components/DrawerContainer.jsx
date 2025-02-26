@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Drawer from '@mui/material/Drawer';
 import { DrawerCloseIcon } from "../lib/icons";
 import DrawerCard from './DrawerCard';
@@ -8,9 +9,11 @@ import { jobRequestContext } from './Dispatcher';
 
 
 const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
+    const navigate = useNavigate(); 
 
     const handleClick = (index) => {
-        setIndex(index)
+        setIndex(index);
+        navigate('/');
     }
 
     const { jobReqs } = useContext(jobRequestContext);

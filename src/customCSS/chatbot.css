@@ -1,0 +1,63 @@
+.react-chatbot-kit-chat-container {
+  width: 100%;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 93vh; 
+  max-height: 93vh; 
+  border-radius: 0px;
+  position: relative; 
+}
+
+.react-chatbot-kit-chat-inner-container {
+  height: 100%;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+}
+
+.react-chatbot-kit-chat-message-container {
+  flex: 1; /* Allow the message container to take up remaining space */
+  overflow-y: auto; /* Enable scrolling for messages */
+  padding: 10px; /* Add some padding */
+}
+
+.react-chatbot-kit-chat-input-container {
+  position: sticky; /* Stick the input to the bottom */
+  bottom: 0;
+  background-color: #fff; /* Match your design */
+  padding: 10px;
+  border-top: 1px solid #ddd; /* Add a border for separation */
+}
+
+.react-chatbot-kit-chat-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+}
+
+.react-chatbot-kit-chat-bot-message {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  color: black;
+  font-weight: medium;
+  width: 100%;
+  text-align: left;
+}
+
+.react-chatbot-kit-user-chat-message {
+  background-color: #2511BE;
+  color: white;
+}
+
+.react-chatbot-kit-chat-bot-message-arrow,
+.react-chatbot-kit-user-chat-message-arrow {
+  opacity: 0;
+}

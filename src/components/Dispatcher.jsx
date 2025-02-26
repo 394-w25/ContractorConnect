@@ -2,15 +2,13 @@ import { createContext, useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import RequestPage from '../pages/RequestPage';
 import LandingPage from '../pages/LandingPage'; 
+import NewProjectPage from '../pages/NewProjectPage';
 import TopNavBar from './TopNavBar';
 import { useAuthState } from '../utilities/firebase';
 import { jobRequests } from '../utilities/data.js'
 
-
-
 export const userContext = createContext();
 export const jobRequestContext = createContext(); 
-
 
 const Dispatcher = () => {
     // Add user auth as needed
@@ -28,6 +26,7 @@ const Dispatcher = () => {
                 <TopNavBar index={index} setIndex={setIndex} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/> 
                 <Routes>
                     <Route path="/" element={<RequestPage index={index} isDrawerOpen={drawerOpen}/>} /> 
+                    <Route path="/newproject" element={<NewProjectPage isDrawerOpen={drawerOpen}/>} />
                 </Routes>
             </jobRequestContext.Provider>
         </userContext.Provider>
