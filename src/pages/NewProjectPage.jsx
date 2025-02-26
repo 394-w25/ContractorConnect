@@ -7,9 +7,12 @@ import 'react-chatbot-kit/build/main.css'
 import '../customCSS/chatbot.css';
 
 
-const NewProjectPage = () => {
+const NewProjectPage = ({ isDrawerOpen }) => {
+  const width = isDrawerOpen ?  "w" + (window.innerWidth - 305).toString() : "w-full";
+  const leftMargin = isDrawerOpen ? "ml-[305px] " : "ml-0 ";
+  
   return (
-    <div>
+    <div className={leftMargin + width}>
       <Chatbot
         config={config}
         messageParser={MessageParser}

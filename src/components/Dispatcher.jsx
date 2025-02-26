@@ -26,7 +26,7 @@ const Dispatcher = () => {
                 <TopNavBar index={index} setIndex={setIndex} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/> 
                 <Routes>
                     <Route path="/" element={<RequestPage index={index} isDrawerOpen={drawerOpen}/>} /> 
-                    <Route path="/newproject" element={<NewProjectPage />} />
+                    <Route path="/newproject" element={<NewProjectPage isDrawerOpen={drawerOpen}/>} />
                 </Routes>
             </jobRequestContext.Provider>
         </userContext.Provider>
