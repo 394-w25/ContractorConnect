@@ -6,14 +6,16 @@ import RequestInfo from './RequestInfo';
 
 const TopNavBar = ({drawerOpen, setDrawerOpen, index, setIndex}) => {
 
+    const rightMargin = drawerOpen ? "ml-[305px] " : "ml-0 ";
+
     return (
-        <div>
+        <div className={rightMargin}>
             <div className="h-[48px] bg-homieBlue text-white flex flex-row items-center gap-2 z-50">
             <button 
                 onClick={() => setDrawerOpen(!drawerOpen)}
                 className="ml-3"
             >
-                <DrawerOpenIcon />
+                {!drawerOpen && <DrawerOpenIcon /> }
             </button>
             <div className={`flex flex-row gap-2 items-center ${drawerOpen && 'ml-[280px]'}`}>
                 <HomieIcon />

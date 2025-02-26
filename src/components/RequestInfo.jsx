@@ -5,11 +5,6 @@ import ConfirmationModal from './ConfirmationModal';
 import ConfirmationUpdateModal from './ConfirmationUpdateModal';
 
 const RequestInfo = ({isDrawerOpen, index}) => {
-    console.log(isDrawerOpen);
-    const leftMargin = isDrawerOpen ? "ml-[305px] " : "ml-0 ";
-    console.log(leftMargin)
-    const width = isDrawerOpen ?  "w" + (window.innerWidth - 305).toString() : "w-full";
-
     const [open, setOpen] = useState(false);
     const [showConfirmationUpdate, setShowConfirmationUpdate] = useState(false);
 
@@ -19,8 +14,8 @@ const RequestInfo = ({isDrawerOpen, index}) => {
     };
 
     return (
-        <div>
-            <div className={"grid grid-cols-3 bg-white " + leftMargin + width}>
+        <div >
+            <div className={"grid grid-cols-3 bg-white "}>
                 <div className="col-span-2">
                     <RequestInfoDetails index={index}/>
                 </div>
