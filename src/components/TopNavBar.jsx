@@ -1,12 +1,11 @@
-import { useState } from 'react';
 import { HomieIcon, DrawerOpenIcon } from "../lib/icons";
+import { useNavigate } from "react-router-dom";
 import DrawerContainer from '../components/DrawerContainer'
-import RequestInfo from './RequestInfo';
 
 
 const TopNavBar = ({drawerOpen, setDrawerOpen, setIndex}) => {
 
-
+    const navigate = useNavigate(); 
 
     return (
         <div>
@@ -17,7 +16,8 @@ const TopNavBar = ({drawerOpen, setDrawerOpen, setIndex}) => {
             >
                 {!drawerOpen && <DrawerOpenIcon /> }
             </button>
-            <div className={`flex flex-row gap-2 items-center ${drawerOpen && 'ml-[280px]'}`}>
+            <div className={`flex flex-row gap-2 items-center cursor-pointer ${drawerOpen && 'ml-[290px]'}`}
+                 onClick={() => navigate('/')}>
                 <HomieIcon />
                 <span className="font-bold">
                     ContractorConnect
