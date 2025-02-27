@@ -13,7 +13,7 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
 
     const handleClick = (index) => {
         setIndex(index);
-        navigate('/');
+        navigate('/requests');
     }
 
     const { jobReqs } = useContext(jobRequestContext);
