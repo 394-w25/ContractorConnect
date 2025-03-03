@@ -1,12 +1,11 @@
 import {describe, expect, test} from 'vitest';
 import {fireEvent, render, screen} from '@testing-library/react';
 import App from './App';
-import LandingPage from './pages/LandingPage';
 
-describe('counter tests', () => {
+describe('App Component Tests', () => {
     
   test("ContractorConnect Landing Page", () => {
-    render(<LandingPage />);
+    render(<App />);
     expect(screen.getByText('Sign In')).toBeDefined();
   });
 
