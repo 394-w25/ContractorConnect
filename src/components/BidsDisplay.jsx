@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { jobRequestContext } from './Dispatcher';
 import { contractors } from "../utilities/data";
 import ContractorCard from "./ContractorCard";
+import ContractorBidCard from "./ContractorBidCard"
 
 const BidsDisplay = ({setModalOpen, index}) => {
     
@@ -55,7 +56,7 @@ const BidsDisplay = ({setModalOpen, index}) => {
             </div>
 
             <p className="text-lg">Contractors</p>
-            {contract_list.map((contractor, idx) => <ContractorCard 
+            {contract_list.map((contractor, idx) => <ContractorBidCard 
                                                     key={idx}
                                                     name={contractor.name} 
                                                     quote={contractor.quote} 
