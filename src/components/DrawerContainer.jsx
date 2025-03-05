@@ -22,7 +22,11 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
     const activeProjects = Object.entries(jobReqs).filter(([index, request]) => request.contractorName !== null)
     const activeRequests = Object.entries(jobReqs).filter(([index, request]) => request.contractorName === null ) 
 
-    console.log(activeProjects)
+    const noProjects = Object.entries(activeRequests).length == 0 && Object.entries(contractors).length == 0 && Object.entries(activeProjects).length == 0
+
+    //const noProjects = true;
+
+    //console.log(activeProjects)
 
     return (
         <Drawer
@@ -48,65 +52,73 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
                     <DrawerCloseIcon />
                 </button>
             </div>
-            <div className="w-full mt-[48px]">
-            {(activeProjects && Object.entries(activeProjects).length > 0) && 
-                <div className="flex flex-col gap-2 items-center p-4">
-                    <span className="font-bold w-full text-start">
-                        Active Projects
-                    </span>
-                    {activeProjects.map(rq => (
-                        <DrawerCard
-                            key={rq[0]}
-                            width={'100%'}
-                            height={51}
-                            img={rq[1].img}
-                            name={rq[1].name}
-                            handleClick = {() => handleClick(rq[0])}
-                        />
-
-                    ))}
+            <div>
+              {noProjects ? (
+                <div className="mt-[300px] flex items-center justify-center h-full">
+                    <div className="font-[700] text-3xl text-gray-500 font-large text-center">
+                        <div>No created</div>
+                        <div>projects</div>
+                    </div>
                 </div>
-            }
-            {(activeRequests && Object.entries(activeRequests).length > 0) && 
-                <div className="flex flex-col gap-2 items-center p-4">
-                    <span className="font-bold w-full text-start">
-                        Requests
-                    </span>
-                    {activeRequests.map(rq => (
-                        <DrawerCard
-                            key={rq[0]}
-                            width={'100%'}
-                            height={51}
-                            img={rq[1].img}
-                            name={rq[1].name}
-                            handleClick = {() => handleClick(rq[0])}
-                        />
-
-                    ))}
-                </div>
-            }
-            {(contractors && Object.entries(contractors).length > 0) &&
-                <div className="flex flex-col gap-2 items-center p-4">
-                    <span className="font-bold w-full text-start">
-                        Contractors
-                    </span>
-                    {Object.entries(contractors).map((ct, idx) => (
-                        // name, quote, imgUrl, height, width
-                        <ContractorCard
-                            key={idx}
-                            name={ct[1].name}
-                            quote={ct[1].quote}
-                            imgUrl={ct[1].img}
-                            height={51}
-                            width={'100%'}
-                            needsQuote={false}
-                        />
-                    ))}
-                </div>
-            }
+              ) : (
+                  <div className="w-full mt-[48px]">
+                      {(activeProjects && Object.entries(activeProjects).length > 0) && 
+                          <div className="flex flex-col gap-2 items-center p-4">
+                              <span className="font-bold w-full text-start">
+                                  Active Projects
+                              </span>
+                              {activeProjects.map(rq => (
+                                  <DrawerCard
+                                      key={rq[0]}
+                                      width={'100%'}
+                                      height={51}
+                                      img={rq[1].img}
+                                      name={rq[1].name}
+                                      handleClick = {() => handleClick(rq[0])}
+                                  />
+                              ))}
+                          </div>
+                      }
+                      {(activeRequests && Object.entries(activeRequests).length > 0) && 
+                          <div className="flex flex-col gap-2 items-center p-4">
+                              <span className="font-bold w-full text-start">
+                                  Requests
+                              </span>
+                              {activeRequests.map(rq => (
+                                  <DrawerCard
+                                      key={rq[0]}
+                                      width={'100%'}
+                                      height={51}
+                                      img={rq[1].img}
+                                      name={rq[1].name}
+                                      handleClick = {() => handleClick(rq[0])}
+                                  />
+                              ))}
+                          </div>
+                      }
+                      {(contractors && Object.entries(contractors).length > 0) &&
+                          <div className="flex flex-col gap-2 items-center p-4">
+                              <span className="font-bold w-full text-start">
+                                  Contractors
+                              </span>
+                              {Object.entries(contractors).map((ct, idx) => (
+                                  <ContractorCard
+                                      key={idx}
+                                      name={ct[1].name}
+                                      quote={ct[1].quote}
+                                      imgUrl={ct[1].img}
+                                      height={51}
+                                      width={'100%'}
+                                      needsQuote={false}
+                                  />
+                              ))}
+                          </div>
+                      }
+                  </div>
+              )}
             </div>
         </Drawer>
-    )
+      )
 }
 
 export default DrawerContainer;
