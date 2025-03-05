@@ -3,6 +3,7 @@ import BidsDisplay from './BidsDisplay';
 import RequestInfoDetails from './RequestInfoDetails'
 import ConfirmationModal from './ConfirmationModal';
 import ConfirmationUpdateModal from './ConfirmationUpdateModal';
+import ContractorBidCard from './ContractorBidCard'
 
 const RequestInfo = ({isDrawerOpen, index}) => {
     const [open, setOpen] = useState(false);
@@ -45,7 +46,7 @@ const RequestInfo = ({isDrawerOpen, index}) => {
             <ConfirmationUpdateModal 
                 isOpen={showConfirmationUpdate}
                 onClose={() => setShowConfirmationUpdate(false)}
-            />    
+            />   
         </div>
         
     )
