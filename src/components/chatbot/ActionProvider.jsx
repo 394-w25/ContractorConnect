@@ -1,6 +1,18 @@
 import React from 'react';
+import { useDbUpdate } from '../../utilities/firebase';
+import { v4 as uuidv4 } from 'uuid';
+import { useContext } from 'react';
+import {userContext} from '../Dispatcher';
+
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
+  const requestId = uuidv4();
+
+  const [updateDb] = useDbUpdate(`requests/${requestId}`); // Firebase database reference
+  const user = useContext(userContext);
+ 
+
+
   const handleHello = () => {
     const botMessage = createChatBotMessage("Hi! I'm Homie, your paint project assistant. To help you create your perfect space, I'll need your project title.");
 
@@ -107,6 +119,21 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         • Wall dimensions: ${wallDimensionsText}`
       );
       
+      const requestId = uuidv4();
+
+      // Create a new request object that matches your DB schema
+      const newRequest = {
+        desc: `Painting project for ${projectData.propertyName}`,
+        email: user.email, // You’ll need to get this from somewhere
+        name: projectData.title || projectData.propertyName || "New Project",
+
+        sqft: 0, // Calculate from wall dimensions if available
+
+      };
+    
+      // Update the database
+      updateDb(newRequest);
+
       return {
         ...prev,
         messages: [...prev.messages, botMessage],
