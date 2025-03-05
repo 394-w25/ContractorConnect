@@ -1,36 +1,43 @@
-import { useContext } from 'react'; 
+import { useContext, useState } from 'react'; 
 import { jobRequestContext } from './Dispatcher';
 import { contractors } from "../utilities/data";
 import ContractorCard from "./ContractorCard";
-import ContractorBidCard from "./ContractorBidCard"
+import ContractorBidCard from "./ContractorBidCard";
 
 const BidsDisplay = ({setModalOpen, index}) => {
-    
     const {jobReqs, setJobReqs} = useContext(jobRequestContext);
-    let jobRequest = jobReqs[index]
-
+    let jobRequest = jobReqs[index];
+    
+    // State to track which contractor cards are expanded
+    const [expandedCards, setExpandedCards] = useState({});
+    
     const contract_list = jobRequest.contractorName ? 
                         Object.values(contractors).filter((contractor) => contractor.name === jobRequest.contractorName) : 
-                        Object.values(contractors) 
+                        Object.values(contractors);
 
     const handleClick = () => {
         if(jobRequest.contractorName !== null) {
-            jobRequest.contractorName = null 
-            console.log('asdfdsafsadf')
+            jobRequest.contractorName = null;
+            console.log('asdfdsafsadf');
             setJobReqs((prev) => {
-                return {...prev, [index] : jobRequest}
-            })
+                return {...prev, [index] : jobRequest};
+            });
         }
         else {
-            setModalOpen(true)
+            setModalOpen(true);
         }
-
-    }
+    };
+    
+    // Toggle expanded state for a specific contractor card
+    const toggleCardExpansion = (contractorId) => {
+        setExpandedCards(prev => ({
+            ...prev,
+            [contractorId]: !prev[contractorId]
+        }));
+    };
     
     return (
-
         <div className="flex flex-col p-3 gap-y-2">
-
             <div className="flex justify-between mb-2">
                 <p className="text-2xl">Bids</p>
 
@@ -47,27 +54,42 @@ const BidsDisplay = ({setModalOpen, index}) => {
                 </div>
             </div>
             
-
             <div className="flex justify-between items-center">
                 <p>Our estimated cost:</p>
-                
                 <div className="border-2 border-homieBlue p-2 rounded-md text-homieBlue"> $350.00 </div>
-            
             </div>
 
             <p className="text-lg">Contractors</p>
-            {contract_list.map((contractor, idx) => <ContractorBidCard 
-                                                    key={idx}
-                                                    name={contractor.name} 
-                                                    quote={contractor.quote} 
-                                                    imgUrl={contractor.img} 
-                                                    width={'75%'} 
-                                                    height={'30'} 
-                                                    needsQuote={true} />)}
-
+            
+            {contract_list.map((contractor, idx) => {
+                const isExpanded = expandedCards[contractor.id] || expandedCards[idx];
+                
+                return (
+                    <div key={idx} onClick={() => toggleCardExpansion(contractor.id || idx)}>
+                        {isExpanded ? (
+                            <ContractorBidCard
+                                name={contractor.name} 
+                                quote={contractor.quote} 
+                                imgUrl={contractor.img} 
+                                width={'75%'} 
+                                height={'30'} 
+                                needsQuote={true}
+                            />
+                        ) : (
+                            <ContractorCard
+                                name={contractor.name} 
+                                quote={contractor.quote} 
+                                imgUrl={contractor.img} 
+                                width={'75%'} 
+                                height={'30'} 
+                                needsQuote={true}
+                            />
+                        )}
+                    </div>
+                );
+            })}
         </div>
-       
-    )
-}
+    );
+};
 
 export default BidsDisplay;
