@@ -8,8 +8,9 @@ import {userContext} from '../Dispatcher';
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const requestId = uuidv4();
 
-  const [updateDb] = useDbUpdate(`requests/${requestId}`); // Firebase database reference
   const user = useContext(userContext);
+  const [updateRequestsDb] = useDbUpdate(`requests/${requestId}`); // Firebase database reference
+  const [updateUserDb] = useDbUpdate(`homeowners/${user.uid}/requests/${requestId}`);
  
 
 
@@ -119,7 +120,6 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         • Wall dimensions: ${wallDimensionsText}`
       );
       
-      const requestId = uuidv4();
 
       // Create a new request object that matches your DB schema
       const newRequest = {
@@ -130,9 +130,11 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         sqft: 0, // Calculate from wall dimensions if available
 
       };
-    
-      // Update the database
-      updateDb(newRequest);
+      
+      updateRequestsDb(newRequest);
+      
+      // Update homeowner's requests list in Firebase
+      updateUserDb({ 'test': true }); // Use true as a placeholder value
 
       return {
         ...prev,
