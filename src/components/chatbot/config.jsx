@@ -1,22 +1,13 @@
 import React from 'react';
 import { createChatBotMessage } from 'react-chatbot-kit';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import WallWidget from './WallWidget';
 
 const config = {
   initialMessages: [
-    createChatBotMessage("Hi! I'm Homie, your paint project assistant. Please enter the information needed to generate a quote.",
-      {
-        widget: 'wallWidget'
-      }
-    ),
+    createChatBotMessage("Hi! I'm Homie, your paint project assistant. To help you create your perfect space, I'll first need the title of your project"),
   ],
   state: {
     projectData: {},
-    projectTitle: '',
-    address: '',
-    noOfWalls: 0,
-    dimensions: [[0, 24]],
   },
   customComponents: {
     header: () => (
@@ -40,13 +31,6 @@ const config = {
     // botAvatar: (props) => <></>,
     // userAvatar: (props) => <></>
   },
-  widgets: [
-    {
-      widgetName: 'wallWidget',
-      widgetFunc: (props) => <WallWidget {...props} />,
-      mapStateToProps: ['projectData', 'address', 'noOfWalls', 'dimensions']
-    },
-  ],
 };
 
 export default config;
