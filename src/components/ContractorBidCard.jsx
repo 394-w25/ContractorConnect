@@ -51,7 +51,7 @@ const ContractorBidCard = ({name, quote, imgUrl, height = 80, width = '50%', nee
             variant="contained"
             sx={{
               backgroundColor: 'white',
-              color: '#4169E1',
+              color: '#2511BE',
               borderRadius: 2,
               fontWeight: 'bold',
               fontSize: '1.25rem',
@@ -70,8 +70,8 @@ const ContractorBidCard = ({name, quote, imgUrl, height = 80, width = '50%', nee
             {companyName}
           </Typography>
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <EmailIcon sx={{ color: '#4169E1' }} />
-            <PhoneIcon sx={{ color: '#4169E1' }} />
+            <EmailIcon sx={{ color: '#2511BE' }} />
+            <PhoneIcon sx={{ color: '#2511BE' }} />
           </Box>
         </Box>
       </CardContent>
@@ -83,20 +83,20 @@ const ContractorBidCard = ({name, quote, imgUrl, height = 80, width = '50%', nee
         <Typography variant="h6" component="span" sx={{ mx: 1, fontWeight: 'bold' }}>
           {rating}
         </Typography>
-        <Rating value={3} readOnly sx={{ color: '#4169E1' }} />
-        <Typography variant="body1" component="span" sx={{ ml: 1, color: '#757575' }}>
+        <Rating value={3} readOnly sx={{ color: '#2511BE' }} />
+        <Typography variant="body1" component="span" sx={{ ml: 1, color: '#2511BE' }}>
           {reviews} Reviews
         </Typography>
       </Box>
       {/* Website and phone */}
-      <Typography variant="body2" sx={{ color: '#4169E1', mb: 1 }}>
+      <Typography variant="body2" sx={{ color: '#2511BE', mb: 1 }}>
         {website}
       </Typography>
       <Typography variant="body2" sx={{ mb: 2 }}>
         {phone}
       </Typography>
       {/* See full bid button */}
-      <Button variant="contained" fullWidth sx={{ backgroundColor: '#4169E1', color: 'white', mb: 2 }}>
+      <Button variant="contained" fullWidth sx={{ backgroundColor: '#2511BE', color: 'white', mb: 2 }}>
         See full bid
       </Button>
       {/* Details section */}
