@@ -20,7 +20,8 @@
     "react-chatbot-kit": "^2.2.2",
     "react-dom": "^18.3.0",
     "react-router-dom": "^7.2.0",
-    "reactjs-popup": "^2.0.6"
+    "reactjs-popup": "^2.0.6",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
