@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import RequestPage from '../pages/RequestPage';
 import LandingPage from '../pages/LandingPage'; 
 import NewProjectPage from '../pages/NewProjectPage';
+import ConfirmationPage from '../pages/ConfirmationPage.jsx'; 
 import TopNavBar from './TopNavBar';
 import { useAuthState } from '../utilities/firebase';
 import { jobRequests } from '../utilities/data.js'
@@ -27,6 +28,7 @@ const Dispatcher = () => {
                 <Routes>
                     <Route path="/requests" element={<RequestPage index={index} isDrawerOpen={drawerOpen}/>} /> 
                     <Route path="/" element={<NewProjectPage isDrawerOpen={drawerOpen}/>} />
+                    <Route path="/confirmation" element={<ConfirmationPage isDrawerOpen={drawerOpen}/>} />
                 </Routes>
             </jobRequestContext.Provider>
         </userContext.Provider>
