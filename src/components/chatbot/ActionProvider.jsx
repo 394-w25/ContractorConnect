@@ -10,8 +10,6 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 
 	const user = useContext(userContext);
 	const [updateRequestsDb] = useDbUpdate(`requests/${requestId}`); // Firebase database reference
-	const [updateUserDb] = useDbUpdate(`homeowners/${user.uid}/requests/${requestId}`);
-
 
 	const setProjectTitle = (val) => {
 		setState((prev) => ({
@@ -71,11 +69,10 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 
 		const newRequest = {
 			desc: `Painting project for ${state.address}`,
-			email: user.email, // You’ll need to get this from somewhere
+			email: user.email, 
 			name: state.projectTitle || state.address || "New Project",
-
-			sqft: 0, // Calculate from wall dimensions if available
-
+			sqft: 0, 
+			contractorId: null
 		};
 
 		updateRequestsDb(newRequest);
