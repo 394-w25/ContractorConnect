@@ -5,50 +5,32 @@ import { DrawerCloseIcon } from "../lib/icons";
 import DrawerCard from './DrawerCard';
 import ContractorCard from './ContractorCard';
 import { contractors } from '../utilities/data';
-import { jobRequestContext } from './Dispatcher';
 import { useDbData } from '../utilities/firebase';
-import { useAuthState } from '../utilities/firebase';
-
+import { userContext } from './Dispatcher';
 
 const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
-    const [user, loading] = useAuthState(); 
+    const user = useContext(userContext);
     const navigate = useNavigate(); 
-    const [jobReqs, setJobReqs] = useState([]);
     const [data, error] = useDbData(`requests`);
+    console.log(data)
 
-    useEffect(() => {
-        if (data && user) {
-            const userRequests = Object.entries(data)
-                .filter(([id, item]) => item && item.email === user.email)
-                .map(([id, item]) => ({
-                    id,
-                    ...item
-                }));
-            
-            setJobReqs(userRequests);
-            // console.log('Filtered requests for user:', userRequests);
-        }
-    }, [data, user]);
-
-    const handleClick = (index) => {
-        setIndex(index);
-        navigate('/requests');
+    if(!data) {
+        return (<p>loading data</p>)
     }
 
-    // console.log('jobReqs', jobReqs)
-    // const { jobReqs } = useContext(jobRequestContext);
+    const requests = Object.entries(data).filter(([id, requests]) => requests.email === user.email);
+
+    console.log(requests);
 
 
-    const activeProjects = Object.entries(jobReqs).filter(([index, request]) => request.contractorName !== "None")
-    const activeRequests = Object.entries(jobReqs).filter(([index, request]) => request.contractorName === "None" ) 
+    const handleClick = (id) => {
+        navigate(`requests/${id}`);
+    }
+
+    const activeProjects = requests.filter((request) => request.contractorName !== "None")
+    const activeRequests = requests.filter((request) => request.contractorName === "None" ) 
 
     const noProjects = Object.entries(activeRequests).length == 0 && Object.entries(activeProjects).length == 0
-
-    //const noProjects = true;
-
-    // console.log("activeProjects", activeProjects)
-    // console.log("activeRequests", activeRequests)
-    // console.log("noProjects", noProjects)
 
     return (
         <Drawer
@@ -89,14 +71,14 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
                               <span className="font-bold w-full text-start">
                                   Active Projects
                               </span>
-                              {activeProjects.map(rq => (
+                              {activeProjects.map(([id, request]) => (
                                   <DrawerCard
-                                      key={rq[0]}
+                                      key={id}
                                       width={'100%'}
                                       height={51}
-                                      img={rq[1].img}
-                                      name={rq[1].name}
-                                      handleClick = {() => handleClick(rq[0])}
+                                      img={""}
+                                      name={request.name}
+                                      handleClick = {() => handleClick(id)}
                                   />
                               ))}
                           </div>
@@ -106,14 +88,14 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
                               <span className="font-bold w-full text-start">
                                   Requests
                               </span>
-                              {activeRequests.map(rq => (
+                              {activeRequests.map(([id, request]) => (
                                   <DrawerCard
-                                      key={rq[0]}
+                                      key={id}
                                       width={'100%'}
                                       height={51}
-                                      img={rq[1].img}
-                                      name={rq[1].name}
-                                      handleClick = {() => handleClick(rq[0])}
+                                      img={""}
+                                      name={request.name}
+                                      handleClick = {() => handleClick(id)}
                                   />
                               ))}
                           </div>
