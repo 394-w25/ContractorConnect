@@ -20,8 +20,6 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
 
     const requests = Object.entries(data).filter(([id, requests]) => requests.email === user.email);
 
-    console.log(requests);
-
 
     const handleClick = (id) => {
         navigate(`requests/${id}`);
@@ -33,13 +31,11 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
     for(let i = 0; i < activeProjects.length; i++) {
         const [id, request] = activeProjects[i];
         const contractorName = request.contractorName;
-        console.log(contractors)
-        console.log(contractorName)
-        if(contractorName !== "None" && !activeContractors.includes(contractorName)) {
+        if(contractorName && contractorName !== "None" && !activeContractors.includes(contractorName)) {
             activeContractors.push(contractorName)
         }
     }
-
+    console.log(activeContractors)
     const noProjects = Object.entries(activeRequests).length == 0 && Object.entries(activeProjects).length == 0
 
     return (
@@ -115,12 +111,12 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
                               <span className="font-bold w-full text-start">
                                   Contractors
                               </span>
-                              {activeContractors.map(name => (
+                              {activeContractors.map(contractorName => (
                                   <ContractorCard
-                                      key={name}
-                                      name={contractors[name].name}
-                                      quote={contractors[name].quote}
-                                      imgUrl={contractors[name].logo}
+                                      key={contractorName}
+                                      name={contractors[contractorName].name}
+                                      quote={contractors[contractorName].quote}
+                                      imgUrl={contractors[contractorName].logo}
                                       height={51}
                                       width={'100%'}
                                       needsQuote={false}
