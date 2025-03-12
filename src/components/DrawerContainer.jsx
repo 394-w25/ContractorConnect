@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Drawer from '@mui/material/Drawer';
 import { DrawerCloseIcon } from "../lib/icons";
@@ -6,27 +6,49 @@ import DrawerCard from './DrawerCard';
 import ContractorCard from './ContractorCard';
 import { contractors } from '../utilities/data';
 import { jobRequestContext } from './Dispatcher';
+import { useDbData } from '../utilities/firebase';
+import { useAuthState } from '../utilities/firebase';
 
 
 const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
+    const [user, loading] = useAuthState(); 
     const navigate = useNavigate(); 
+    const [jobReqs, setJobReqs] = useState([]);
+    const [data, error] = useDbData(`requests`);
+
+    useEffect(() => {
+        if (data && user) {
+            const userRequests = Object.entries(data)
+                .filter(([id, item]) => item && item.email === user.email)
+                .map(([id, item]) => ({
+                    id,
+                    ...item
+                }));
+            
+            setJobReqs(userRequests);
+            // console.log('Filtered requests for user:', userRequests);
+        }
+    }, [data, user]);
 
     const handleClick = (index) => {
         setIndex(index);
         navigate('/requests');
     }
 
-    const { jobReqs } = useContext(jobRequestContext);
+    // console.log('jobReqs', jobReqs)
+    // const { jobReqs } = useContext(jobRequestContext);
 
 
-    const activeProjects = Object.entries(jobReqs).filter(([index, request]) => request.contractorName !== null)
-    const activeRequests = Object.entries(jobReqs).filter(([index, request]) => request.contractorName === null ) 
+    const activeProjects = Object.entries(jobReqs).filter(([index, request]) => request.contractorName !== "None")
+    const activeRequests = Object.entries(jobReqs).filter(([index, request]) => request.contractorName === "None" ) 
 
-    const noProjects = Object.entries(activeRequests).length == 0 && Object.entries(contractors).length == 0 && Object.entries(activeProjects).length == 0
+    const noProjects = Object.entries(activeRequests).length == 0 && Object.entries(activeProjects).length == 0
 
     //const noProjects = true;
 
-    //console.log(activeProjects)
+    // console.log("activeProjects", activeProjects)
+    // console.log("activeRequests", activeRequests)
+    // console.log("noProjects", noProjects)
 
     return (
         <Drawer
