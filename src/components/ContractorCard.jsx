@@ -8,9 +8,8 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
 
-const ContractorCard = ({name, quote, imgUrl, height, width, needsQuote}) => {
+const ContractorCard = ({name, quote, imgUrl, height = 120, width = '75%', needsQuote}) => {
     
-
     return( <Card sx={{ 
         border: '2px solid #2511BE',
         width: '100%', 
@@ -18,20 +17,36 @@ const ContractorCard = ({name, quote, imgUrl, height, width, needsQuote}) => {
         padding: 2,
     }}>
 
-        <Box sx={{display: 'flex',
-                  justifyContent: 'space-between',
-                  marginBottom: 1
+        <Box sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            marginBottom: 1
         }}>
-
-            <CardMedia
-                sx={{ height: {height},
-                    width: {width},
-                    flexShrink: 0,
+            <Box sx={{
+                height: height,
+                width: width,
+                overflow: 'hidden',
+                borderRadius: '5.164px',
+                position: 'relative',
+                paddingTop: '33.33%', // This creates a 3:1 aspect ratio
+                }}>
+                <CardMedia
+                component="img"
+                sx={{ 
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
                     borderRadius: '5.164px'
                 }}
                 image={imgUrl}
                 title={name}
-            />
+                />
+            </Box>
+            
             {needsQuote &&
             <CardActions>
                 <Button variant="outlined" 
@@ -76,8 +91,6 @@ const ContractorCard = ({name, quote, imgUrl, height, width, needsQuote}) => {
        </Box>
        
       </Card> );
-
-
 }
 
-export default ContractorCard; 
+export default ContractorCard;
