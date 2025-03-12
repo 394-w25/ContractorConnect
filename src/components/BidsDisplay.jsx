@@ -20,8 +20,8 @@ const BidsDisplay = ({setModalOpen }) => {
 
     
     const contract_list = jobRequest.contractorName !== "None" ? 
-                        Object.values(contractors).filter((contractor) => contractor.name === jobRequest.contractorName) : 
-                        Object.values(contractors);
+                        Object.entries(contractors).filter(([id, contractor]) => id === jobRequest.contractorName) : 
+                        Object.entries(contractors);
 
     const handleClick = () => {
         if(jobRequest.contractorName !== "None") {
@@ -42,17 +42,9 @@ const BidsDisplay = ({setModalOpen }) => {
     
     return (
         <div className="p-6">
-            <div className="flex justify-between mb-2">
-                {/*<p className="text-2xl">Bids</p>*/}
 
-            </div>
             
-         {/*  <div className="flex justify-between items-center mb-4">
-                <p>Our estimated cost:</p>
-                <div className="border-2 border-homieBlue p-2 rounded-md text-homieBlue"> $350.00 </div>
-            </div> */}
-
-<div className="flex justify-between items-center mb-3">
+            <div className="flex justify-between items-center mb-3">
                 <p className="text-lg">Contractor Bids</p>
                 
                 <button 
@@ -65,7 +57,7 @@ const BidsDisplay = ({setModalOpen }) => {
             
                         {/* Container for horizontal scrollable layout of cards */}
                         <div className="flex overflow-x-auto pb-4 gap-4 no-scrollbar">
-                {contract_list.map((contractor, idx) => {
+                {contract_list.map(([id, contractor], idx) => {
                     const isExpanded = expandedCards[contractor.id] || expandedCards[idx];
                     
                     return (
