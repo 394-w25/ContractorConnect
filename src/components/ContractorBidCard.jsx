@@ -88,7 +88,15 @@ const ContractorBidCard = ({ name, quote, rating, reviews, website, phone, contr
         {phone}
       </Typography>
       {/* See full bid button */}
-      <Button variant="contained" fullWidth sx={{ backgroundColor: '#2511BE', color: 'white', mb: 2 }}>
+      <Button 
+        variant="contained" 
+        fullWidth 
+        sx={{ backgroundColor: '#2511BE', color: 'white', mb: 2 }}
+        onClick={(e) => {
+          e.stopPropagation(); // Prevent click from triggering card expansion
+          window.open('../pdfs/Edwardo Castro by Harris Exteriors and More.pdf', '_blank');
+        }}
+      >
         See full bid
       </Button>
       {/* Details section */}
