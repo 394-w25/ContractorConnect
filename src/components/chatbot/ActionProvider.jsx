@@ -91,6 +91,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 			email: user.email, // You’ll need to get this from somewhere
 			name: state.projectTitle || state.address || "New Project",
 			imgUrl: state.uploadedImageUrl,
+			contractorName: "None",
 			sqft: 0, // Calculate from wall dimensions if available
 
 		};
