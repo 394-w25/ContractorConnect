@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { useCallback, useEffect, useState } from 'react';
 import { getDatabase, onValue, ref, update, remove} from 'firebase/database';
+import { getStorage } from "firebase/storage";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -23,6 +24,7 @@ const firebaseConfig = {
 const firebase = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(firebase)
 const database = getDatabase(firebase);
+const storage = getStorage(firebase);
 
 export const signInWithGoogle = () => {
   signInWithPopup(getAuth(firebase), new GoogleAuthProvider());
@@ -112,3 +114,30 @@ export const useDbRemove = (path) => {
 
   return [removeData, result];
 };
+
+
+async function uploadImage(file, path) {
+  try {
+    const storageRef = ref(storage, path);
+    const snapshot = await uploadBytes(storageRef, file);
+    const downloadURL = await getDownloadURL(snapshot.ref);
+    return downloadURL;
+  } catch (error) {
+    console.error("Error uploading file:", error);
+    throw error;
+  }
+}
+
+
+async function fetchImageURL(path) {
+  try {
+    const storageRef = ref(storage, path);
+    const downloadURL = await getDownloadURL(storageRef);
+    console.log("Download URL:", downloadURL);
+    return downloadURL;
+  } catch (error) {
+    console.error("Error fetching file:", error);
+    throw error;
+  }
+}
+
