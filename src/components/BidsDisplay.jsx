@@ -1,27 +1,31 @@
 import { useContext, useState } from 'react'; 
-import { jobRequestContext } from './Dispatcher';
 import { contractors } from "../utilities/data";
-import ContractorCard from "./ContractorCard";
+import { idContext } from '../pages/RequestPage';
 import ContractorBidCard from "./ContractorBidCard";
+import { useDbData, useDbUpdate } from '../utilities/firebase';
 
-const BidsDisplay = ({setModalOpen, index}) => {
-    const {jobReqs, setJobReqs} = useContext(jobRequestContext);
-    let jobRequest = jobReqs[index];
+const BidsDisplay = ({setModalOpen }) => {
     
+    const id = useContext(idContext);
+    const [jobRequest, error] = useDbData(`requests/${id}`)
+    const [update, result] = useDbUpdate(`requests/${id}`)
+
     // State to track which contractor cards are expanded
     const [expandedCards, setExpandedCards] = useState({});
+
+
+    if(!jobRequest) {
+        return (<p>Loading data</p>)
+    }
+
     
-    const contract_list = jobRequest.contractorName ? 
+    const contract_list = jobRequest.contractorName !== "None" ? 
                         Object.values(contractors).filter((contractor) => contractor.name === jobRequest.contractorName) : 
                         Object.values(contractors);
 
     const handleClick = () => {
-        if(jobRequest.contractorName !== null) {
-            jobRequest.contractorName = null;
-            console.log('asdfdsafsadf');
-            setJobReqs((prev) => {
-                return {...prev, [index] : jobRequest};
-            });
+        if(jobRequest.contractorName !== "None") {
+            update({... jobRequest, 'contractorName' : "None" })
         }
         else {
             setModalOpen(true);
@@ -55,7 +59,7 @@ const BidsDisplay = ({setModalOpen, index}) => {
                     className="bg-homieBlue text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
                     onClick={handleClick}
                 >
-                    {jobRequest.contractorName !== null ? "Cancel Selection" : "Find Someone"}
+                    {jobRequest.contractorName !== "None" ? "Cancel Selection" : "Find Someone"}
                 </button>
             </div>
             

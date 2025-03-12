@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import {
   Modal,
   Box,
@@ -11,23 +11,18 @@ import {
 } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import { contractors } from '../utilities/data';
-import React, { useState } from "react";
 import ConfirmationUpdateModal from './ConfirmationUpdateModal';
-import { jobRequestContext } from "./Dispatcher.jsx";
+import { useDbUpdate } from '../utilities/firebase';
+import { idContext } from '../pages/RequestPage';
 
-function CustomModal({ isOpen, onClose,onContractorSelect, index }) {
+function CustomModal({ isOpen, onClose,onContractorSelect }) {
   const [selectedContractor, setSelectedContractor] = useState(null);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const { setJobReqs } = useContext(jobRequestContext);
+  const id = useContext(idContext);
+  const [update, result] = useDbUpdate(`requests/${id}`)
 
   const handleContractorSelect = (contractor) => {
-    setJobReqs((prev) => {
-      let jobRequest  = prev[index]
-      jobRequest.contractorName = contractor.name
-      return {...prev, [index] : jobRequest}
-    })
-
-
+    update({'contractorName': contractor.name})
     setSelectedContractor(contractor);
     if (onContractorSelect) {
       onContractorSelect(contractor); // Call the parent callback
