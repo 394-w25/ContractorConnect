@@ -55,7 +55,7 @@ const BidsDisplay = ({setModalOpen, index}) => {
                     className="bg-homieBlue text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
                     onClick={handleClick}
                 >
-                    {jobRequest.contractorName !== null ? "Reset Selection" : "Find Someone"}
+                    {jobRequest.contractorName !== null ? "Cancel Selection" : "Find Someone"}
                 </button>
             </div>
             
