@@ -75,7 +75,7 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
                                       key={id}
                                       width={'100%'}
                                       height={51}
-                                      img={""}
+                                      imgUrl={request.imgUrl}
                                       name={request.name}
                                       handleClick = {() => handleClick(id)}
                                   />
@@ -92,7 +92,7 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
                                       key={id}
                                       width={'100%'}
                                       height={51}
-                                      img={""}
+                                      imgUrl={request.imgUrl}
                                       name={request.name}
                                       handleClick = {() => handleClick(id)}
                                   />

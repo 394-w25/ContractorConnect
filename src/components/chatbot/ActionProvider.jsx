@@ -10,8 +10,6 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 
 	const user = useContext(userContext);
 	const [updateRequestsDb] = useDbUpdate(`requests/${requestId}`); // Firebase database reference
-	const [updateUserDb] = useDbUpdate(`homeowners/${user.uid}/requests/${requestId}`);
-
 
 	const setProjectTitle = (val) => {
 		setState((prev) => ({
@@ -92,7 +90,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 			desc: `Painting project for ${state.address}`,
 			email: user.email, // You’ll need to get this from somewhere
 			name: state.projectTitle || state.address || "New Project",
-
+			imgUrl: state.uploadedImageUrl,
 			sqft: 0, // Calculate from wall dimensions if available
 
 		};
@@ -115,45 +113,6 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 		}
 	}
 
-
-	// const displayProjectInfo = () => {
-	// 	setState((prev) => {
-	// 		const projectData = prev.projectData;
-
-	// 		if (!projectData.walls || projectData.walls.length === 0) {
-	// 			const botMessage = createChatBotMessage(
-	// 				`Project "${projectData.title}" has been created, but no wall dimensions have been added yet.`
-	// 			);
-	// 			return {
-	// 				...prev,
-	// 				messages: [...prev.messages, botMessage],
-	// 			};
-	// 		}
-
-	// 		const wallDimensionsText = projectData.walls.map((wall, index) => {
-	// 			return `Wall ${index + 1}: ${wall.width}x${wall.height} ${wall.unit}`;
-	// 		}).join(', ');
-
-	// 		const botMessage = createChatBotMessage(
-	// 			`Great! Here's a summary of your project "${projectData.title}":
-	//     • Property name: ${projectData.propertyName}
-	//     • Number of walls: ${projectData.wallCount}
-	//     • Wall dimensions: ${wallDimensionsText}`
-	// 		);
-
-
-	// 		// Create a new request object that matches your DB schema
-
-
-	// 		// Update homeowner's requests list in Firebase
-	// 		updateUserDb({ 'test': true }); // Use true as a placeholder value
-
-	// 		return {
-	// 			...prev,
-	// 			messages: [...prev.messages, botMessage],
-	// 		};
-	// 	});
-	// };
 
 
 	return (

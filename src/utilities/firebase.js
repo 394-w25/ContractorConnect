@@ -134,16 +134,28 @@ export async function uploadImage(file, path) {
 }
 
 
-
-async function fetchImageURL(path) {
+export async function fetchImage(downloadURL) {
   try {
-    const storageRef = firebaseStorageRef(storage, path);
-    const downloadURL = await getDownloadURL(storageRef);
-    console.log("Download URL:", downloadURL);
-    return downloadURL;
+    // Fetch the image data from the download URL
+    const response = await fetch(downloadURL);
+    
+    // Check if the response is successful
+    if (!response.ok) {
+      throw new Error('Failed to fetch the image');
+    }
+    
+    // Convert the response to a Blob (binary data)
+    const imageBlob = await response.blob();
+    
+    // Create a URL for the Blob, which can be used to display the image
+    const imageObjectURL = URL.createObjectURL(imageBlob);
+    
+    console.log('Image fetched successfully:', imageObjectURL);
+    
+    return imageObjectURL; // Return the URL for displaying the image
   } catch (error) {
-    console.error("Error fetching file:", error);
-    throw error;
+    console.error('Error fetching image:', error);
+    throw error; // Rethrow the error for further handling
   }
 }
 
