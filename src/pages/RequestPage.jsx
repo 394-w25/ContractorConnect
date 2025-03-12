@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 export const idContext = createContext();
 
-const RequestPage = ({index, isDrawerOpen}) => {
+const RequestPage = ({isDrawerOpen}) => {
     const { id } = useParams();
     
     const width = isDrawerOpen ?  "w" + (window.innerWidth - 305).toString() : "w-full";
@@ -14,7 +14,7 @@ const RequestPage = ({index, isDrawerOpen}) => {
     return (
         <idContext.Provider value={id}>
              <div className={"flex flex-col bg-gray-200 " + leftMargin + width}>
-                <RequestInfo index={index} isDrawerOpen={isDrawerOpen} />
+                <RequestInfo />
             </div>
         </idContext.Provider>
     );

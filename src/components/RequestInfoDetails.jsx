@@ -1,44 +1,13 @@
-import { jobRequests } from '../utilities/data';
+import { useContext } from 'react';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
+import { useDbData } from '../utilities/firebase';
+import { idContext } from '../pages/RequestPage';
 
 
-const RequestInfoDetails =({index}) => {
-    console.log(index);
-    const title = jobRequests[index].name;
-    const img = jobRequests[index].img;
-    const {
-        isIndoor,
-        sqft,
-        ceilingHeight,
-        wallMaterial,
-        paintType,
-        numColors,
-        preperationNeeded,
-        wallCondition,
-        numCoats,
-        schedule,
-        otherServices,
-        desc,
-      } = jobRequests[index];
-
-    // Grid Data
-    const gridData = [
-        { label: "Is this indoor or outdoor?", value: isIndoor },
-        { label: "How many square feet?", value: sqft },
-        { label: "How tall are your ceilings?", value: `${ceilingHeight.ft} ft ${ceilingHeight.in} in` },
-        { label: "Wall material?", value: wallMaterial },
-        { label: "Do you have your own paint?", value: "No" }, // Static value since it is not in data.js
-        { label: "Paint type preference?", value: paintType },
-        { label: "How many colors?", value: numColors },
-        { label: "Preparation needed?", value: preperationNeeded },
-        { label: "Wall condition", value: wallCondition },
-        { label: "How many coats of paint?", value: numCoats },
-        { label: "When to schedule?", value: schedule },
-        { label: "Any other services needed?", value: otherServices },
-    ];
+const RequestInfoDetails =() => {
+    const id = useContext(idContext);
+    const [request, error] = useDbData(`requests/${id}`)
 
     return (
         <Box sx={{
@@ -110,22 +79,6 @@ const RequestInfoDetails =({index}) => {
                 Property name: demo • Number of walls: 1 • Wall dimensions: Wall 1: 10x10 ft
             </Typography> }
             </Box>
-
-            
-           {/* <Typography sx={{
-                color: "#000",
-                fontFamily: "Inter",
-                fontSize: "14px",
-                fontStyle: "normal",
-                fontWeight: 400,
-                lineHeight: "16px", // or 1.14 for the percentage-based value
-                letterSpacing: "0.28px",
-                alignSelf: "stretch",
-                marginTop: 3
-            }}>
-                Tell us a bit more about the project
-            </Typography> */}
-            
 
             <Typography sx={{
                 flex: "1 0 0",

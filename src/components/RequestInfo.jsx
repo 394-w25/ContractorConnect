@@ -3,9 +3,8 @@ import BidsDisplay from './BidsDisplay';
 import RequestInfoDetails from './RequestInfoDetails'
 import ConfirmationModal from './ConfirmationModal';
 import ConfirmationUpdateModal from './ConfirmationUpdateModal';
-import ContractorBidCard from './ContractorBidCard'
 
-const RequestInfo = ({isDrawerOpen, index}) => {
+const RequestInfo = () => {
     const [open, setOpen] = useState(false);
     const [showConfirmationUpdate, setShowConfirmationUpdate] = useState(false);
 
@@ -19,13 +18,12 @@ const RequestInfo = ({isDrawerOpen, index}) => {
             <div className="bg-white">
                 {/* RequestInfoDetails now takes full width */}
                 <div>
-                    <RequestInfoDetails index={index}/>
+                    <RequestInfoDetails/> 
                 </div>
                 
                 {/* BidsDisplay moved below RequestInfoDetails */}
                 <div className="mt-6">
-                    <BidsDisplay setModalOpen={setOpen} 
-                               index={index}/>
+                    <BidsDisplay setModalOpen={setOpen}/>
                 </div>
             </div>
 
@@ -35,7 +33,6 @@ const RequestInfo = ({isDrawerOpen, index}) => {
                         isOpen={open} 
                         onClose={() => setOpen(false)}
                         onContractorSelect={handleContractorSelect}
-                        index={index}
                     />
                 </div>
             )}

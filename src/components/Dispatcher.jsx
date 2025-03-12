@@ -26,7 +26,7 @@ const Dispatcher = () => {
             <jobRequestContext.Provider value={{jobReqs, setJobReqs}}>
                 <TopNavBar index={index} setIndex={setIndex} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/> 
                 <Routes>
-                    <Route path="/requests/:id" element={<RequestPage index={index} isDrawerOpen={drawerOpen}/>} /> 
+                    <Route path="/requests/:id" element={<RequestPage isDrawerOpen={drawerOpen}/>} /> 
                     <Route path="/" element={<NewProjectPage isDrawerOpen={drawerOpen}/>} />
                     <Route path="/confirmation" element={<ConfirmationPage isDrawerOpen={drawerOpen}/>} />
                 </Routes>

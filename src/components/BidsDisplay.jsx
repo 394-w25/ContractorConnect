@@ -1,13 +1,15 @@
 import { useContext, useState } from 'react'; 
-import { jobRequestContext } from './Dispatcher';
 import { contractors } from "../utilities/data";
-import ContractorCard from "./ContractorCard";
+import { idContext } from '../pages/RequestPage';
 import ContractorBidCard from "./ContractorBidCard";
+import { useDbData, useDbUpdate } from '../utilities/firebase';
 
-const BidsDisplay = ({setModalOpen, index}) => {
-    const {jobReqs, setJobReqs} = useContext(jobRequestContext);
-    let jobRequest = jobReqs[index];
+const BidsDisplay = ({setModalOpen }) => {
     
+    const id = useContext(idContext);
+    const [jobRequest, error] = useDbData(`requests/${id}`)
+    const [update, result] = useDbUpdate(`requests/${id}`)
+
     // State to track which contractor cards are expanded
     const [expandedCards, setExpandedCards] = useState({});
     
@@ -16,12 +18,9 @@ const BidsDisplay = ({setModalOpen, index}) => {
                         Object.values(contractors);
 
     const handleClick = () => {
-        if(jobRequest.contractorName !== null) {
-            jobRequest.contractorName = null;
+        if(jobRequest.contractorName !== "None") {
             console.log('asdfdsafsadf');
-            setJobReqs((prev) => {
-                return {...prev, [index] : jobRequest};
-            });
+            update({... jobRequest, 'contractorName' : "None" })
         }
         else {
             setModalOpen(true);
