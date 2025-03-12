@@ -3,10 +3,12 @@ import { useDbUpdate } from '../../utilities/firebase';
 import { v4 as uuidv4 } from 'uuid';
 import { useContext } from 'react';
 import { userContext } from '../Dispatcher';
+import { useNavigate } from 'react-router-dom';
 
 
 const ActionProvider = ({ createChatBotMessage, setState, children, state }) => {
 	const requestId = uuidv4();
+	const navigate = useNavigate();
 
 	const user = useContext(userContext);
 	const [updateRequestsDb] = useDbUpdate(`requests/${requestId}`); // Firebase database reference
@@ -97,6 +99,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 		};
 
 		updateRequestsDb(newRequest);
+		navigate('/confirmation');
+
 	};
 
 	const handleMessage = (message) => {
