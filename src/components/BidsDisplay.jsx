@@ -81,7 +81,7 @@ const BidsDisplay = ({setModalOpen, index}) => {
                                 quote={contractor.quote} 
                                 imgUrl={contractor.logo} 
                                 width={'75%'} 
-                                height={'30'} 
+                                height={'20'} 
                                 needsQuote={true}
                             />
                         )}
