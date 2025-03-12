@@ -128,7 +128,7 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
                                       key={idx}
                                       name={ct[1].name}
                                       quote={ct[1].quote}
-                                      imgUrl={ct[1].img}
+                                      imgUrl={ct[1].logo}
                                       height={51}
                                       width={'100%'}
                                       needsQuote={false}

@@ -70,7 +70,7 @@ const BidsDisplay = ({setModalOpen, index}) => {
                             <ContractorBidCard
                                 name={contractor.name} 
                                 quote={contractor.quote} 
-                                imgUrl={contractor.img} 
+                                imgUrl={contractor.logo} 
                                 width={'75%'} 
                                 height={'30'} 
                                 needsQuote={true}
@@ -79,7 +79,7 @@ const BidsDisplay = ({setModalOpen, index}) => {
                             <ContractorCard
                                 name={contractor.name} 
                                 quote={contractor.quote} 
-                                imgUrl={contractor.img} 
+                                imgUrl={contractor.logo} 
                                 width={'75%'} 
                                 height={'30'} 
                                 needsQuote={true}

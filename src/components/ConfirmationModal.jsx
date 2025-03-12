@@ -101,7 +101,7 @@ function CustomModal({ isOpen, onClose,onContractorSelect, index }) {
                 <CardMedia
                   component="img"
                   height="80"
-                  image={contractor.img} // Image from data.js
+                  image={contractor.logo} // Image from data.js
                   alt={contractor.name}
                   sx={{ 
                     borderRadius: 1,
