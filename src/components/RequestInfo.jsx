@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useDbData } from '../utilities/firebase';
+import { idContext } from '../pages/RequestPage';
 import BidsDisplay from './BidsDisplay';
 import RequestInfoDetails from './RequestInfoDetails'
 import ConfirmationModal from './ConfirmationModal';
@@ -7,6 +9,12 @@ import ConfirmationUpdateModal from './ConfirmationUpdateModal';
 const RequestInfo = () => {
     const [open, setOpen] = useState(false);
     const [showConfirmationUpdate, setShowConfirmationUpdate] = useState(false);
+    const id = useContext(idContext);
+    const [request, error] = useDbData(`requests/${id}`);
+
+    if(!request) {
+        return (<p>Loading data</p>)
+    }
 
     const handleContractorSelect = (contractor) => {
         setOpen(false); // Close the first modal
@@ -18,7 +26,7 @@ const RequestInfo = () => {
             <div className="bg-white">
                 {/* RequestInfoDetails now takes full width */}
                 <div>
-                    <RequestInfoDetails/> 
+                    <RequestInfoDetails request={request}/> 
                 </div>
                 
                 {/* BidsDisplay moved below RequestInfoDetails */}

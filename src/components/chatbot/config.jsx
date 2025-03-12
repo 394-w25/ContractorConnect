@@ -1,13 +1,16 @@
 import React from 'react';
 import { createChatBotMessage } from 'react-chatbot-kit';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import WallWidget from './WallWidget';
+import InitialWidget from './InitialWidget';
+import ImageDisplayWidget from './ImageDisplayWidget';
+// import WallWidget from './WallWidget';
 
 const config = {
+
 	initialMessages: [
 		createChatBotMessage("Hi! I'm Homie, your paint project assistant. Please enter the information needed to generate a quote.",
 			{
-				widget: 'wallWidget'
+				widget: 'initialWidget'
 			}
 		),
 	],
@@ -17,6 +20,7 @@ const config = {
 		address: '',
 		noOfWalls: 0,
 		dimensions: [[0, 24]],
+		uploadedImageUrl: ''
 	},
 	customComponents: {
 		header: () => (
@@ -42,10 +46,20 @@ const config = {
 	},
 	widgets: [
 		{
-			widgetName: 'wallWidget',
-			widgetFunc: (props) => <WallWidget {...props} />,
+			widgetName: 'initialWidget',
+			widgetFunc: (props) => <InitialWidget {...props} />,
 			mapStateToProps: ['projectData', 'address', 'noOfWalls', 'dimensions']
 		},
+		{
+			widgetName: 'imageDisplayWidget',
+			widgetFunc: (props) => <ImageDisplayWidget {...props} />,
+			mapStateToProps: ['uploadedImageUrl']
+		},
+		// {
+		// 	widgetName: 'wallWidget',
+		// 	widgetFunc: (props) => <WallWidget {...props} />,
+		// 	mapStateToProps: ['projectData', 'address', 'noOfWalls', 'dimensions']
+		// },
 	],
 };
 

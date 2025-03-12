@@ -1,19 +1,25 @@
-import { useContext } from 'react';
+import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
-import { useDbData } from '../utilities/firebase';
-import { idContext } from '../pages/RequestPage';
+import { fetchImage } from '../utilities/firebase';
 
 
-const RequestInfoDetails =() => {
-    const id = useContext(idContext);
-    const [request, error] = useDbData(`requests/${id}`);
-
+const RequestInfoDetails =({request}) => {
     console.log(request)
-
-    if(!request) {
-        return (<p>Loading data</p>)
+    const [img, setImg] = useState('');
+    
+    useEffect(() => {
+    const wrapper = async () => {
+        const response = await fetchImage(request.imgUrl);
+        setImg(response);
     }
+
+    wrapper();
+    
+    }, [request.imgUrl])
+
+    console.log(img)
+
 
     return (
         <Box sx={{
@@ -55,6 +61,25 @@ const RequestInfoDetails =() => {
                 gap: "14px",
                 alignSelf: "stretch",
             }}>
+                <Box
+                     component="img"
+                     src={img} // Replace with actual image path
+                     alt="Request Image"
+                     sx={{
+                         display: "flex",
+                         height: "200px",
+                         padding: "24px",
+                         justifyContent: "center",
+                         alignItems: "center",
+                         gap: "8.607px",
+                         flex: "1 0 0",
+                         borderRadius: "5.164px",
+                         backgroundImage: "url(<path-to-image>)",
+                         backgroundColor: "lightgray",
+                         backgroundPosition: "50%",
+                         backgroundSize: "cover",
+                         backgroundRepeat: "no-repeat",                      
+                     }}/>
 
             <p className="text-lg"> Request Information</p>
             { <Typography sx={{
