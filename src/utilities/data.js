@@ -149,7 +149,7 @@ export const contractors = {
         "materials": 95,
         "labor": 70,
         "equipment": 60
-    },
+    }
     // "handy_manny_services": {
     //     "name": "Handy Manny's Services",
     //     "phone": "(404) 555-3961",
