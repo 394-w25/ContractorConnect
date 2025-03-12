@@ -59,6 +59,25 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 		}));
 	}
 
+	const handleImageUpload = (imageUrl) => {
+		setState((prev) => ({
+			...prev,
+			uploadedImageUrl: imageUrl
+		}));
+
+		const botMessage = createChatBotMessage("Nice! Here is your uploaded image.",
+			{
+				widget: 'imageDisplayWidget'
+			}
+		);
+
+		setState((prev) => ({
+			...prev,
+			messages: [...prev.messages, botMessage],
+		}));
+
+	}
+
 	const handleSubmitForm = () => {
 		const botMessage = createChatBotMessage(
 			`Great! Feel free to ask me questions about this project.`
@@ -94,8 +113,6 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 
 			return;
 		}
-
-
 	}
 
 
@@ -152,6 +169,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 						handleDimDel,
 						handleSubmitForm,
 						handleMessage,
+						handleImageUpload
 					},
 				});
 			})}

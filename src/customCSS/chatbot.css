@@ -35,10 +35,10 @@
 .react-chatbot-kit-chat-input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #d00;
+  border: 1px solid #ddd;
   border-radius: 5px;
   outline: none;
-
+  
 }
 
 .react-chatbot-kit-chat-bot-message {

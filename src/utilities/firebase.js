@@ -2,9 +2,10 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { useCallback, useEffect, useState } from 'react';
-import { getDatabase, onValue, ref, update, remove} from 'firebase/database';
-import { getStorage } from "firebase/storage";
+import { getDatabase, onValue, ref as firebaseDbRef, update, remove} from 'firebase/database';
+import { getStorage, uploadBytes, getDownloadURL, ref as firebaseStorageRef } from "firebase/storage";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -54,7 +55,7 @@ export const useDbData = (path) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const dbRef = ref(database, path);
+    const dbRef = firebaseDbRef(database, path);
     const unsubscribe = onValue(dbRef, (snapshot) => {
       setData(snapshot.val());
     }, (error) => {
@@ -76,7 +77,7 @@ const makeResult = (error) => {
 export const useDbUpdate = (path) => {
   const [result, setResult] = useState();
   const updateData = useCallback((value) => {
-      update(ref(database, path), value)
+      update(firebaseDbRef(database, path), value)
       .then(() => setResult(makeResult()))
       .catch((error) => setResult(makeResult(error)))
   }, [database, path]);
@@ -89,7 +90,7 @@ export const useDbMultiUpdate = () => {
   // We remove the path parameter since we’ll pass complete update objects
   const updateData = useCallback((updates) => {
     // Updates should be an object containing all the paths and their values
-    return update(ref(database), updates)
+    return update(firebaseDbRef(database), updates)
       .then(() => {
         const successResult = makeResult();
         setResult(successResult);
@@ -107,7 +108,7 @@ export const useDbMultiUpdate = () => {
 export const useDbRemove = (path) => {
   const [result, setResult] = useState();
   const removeData = useCallback(() => {
-      remove(ref(database, path))
+      remove(firebaseDbRef(database, path))
       .then(() => setResult(makeResult()))
       .catch((error) => setResult(makeResult(error)))
   }, [database, path]);
@@ -116,9 +117,13 @@ export const useDbRemove = (path) => {
 };
 
 
-async function uploadImage(file, path) {
+export async function uploadImage(file, path) {
   try {
-    const storageRef = ref(storage, path);
+    if (!path || typeof path !== 'string' || path.trim() === '') {
+      throw new Error("uploadImage requires a valid non-empty path string.");
+    }
+
+    const storageRef = firebaseStorageRef(storage, path);
     const snapshot = await uploadBytes(storageRef, file);
     const downloadURL = await getDownloadURL(snapshot.ref);
     return downloadURL;
@@ -129,9 +134,10 @@ async function uploadImage(file, path) {
 }
 
 
+
 async function fetchImageURL(path) {
   try {
-    const storageRef = ref(storage, path);
+    const storageRef = firebaseStorageRef(storage, path);
     const downloadURL = await getDownloadURL(storageRef);
     console.log("Download URL:", downloadURL);
     return downloadURL;

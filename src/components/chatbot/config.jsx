@@ -2,6 +2,7 @@ import React from 'react';
 import { createChatBotMessage } from 'react-chatbot-kit';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import InitialWidget from './InitialWidget';
+import ImageDisplayWidget from './ImageDisplayWidget';
 // import WallWidget from './WallWidget';
 
 const config = {
@@ -19,6 +20,7 @@ const config = {
 		address: '',
 		noOfWalls: 0,
 		dimensions: [[0, 24]],
+		uploadedImageUrl: ''
 	},
 	customComponents: {
 		header: () => (
@@ -47,6 +49,11 @@ const config = {
 			widgetName: 'initialWidget',
 			widgetFunc: (props) => <InitialWidget {...props} />,
 			mapStateToProps: ['projectData', 'address', 'noOfWalls', 'dimensions']
+		},
+		{
+			widgetName: 'imageDisplayWidget',
+			widgetFunc: (props) => <ImageDisplayWidget {...props} />,
+			mapStateToProps: ['uploadedImageUrl']
 		},
 		// {
 		// 	widgetName: 'wallWidget',
