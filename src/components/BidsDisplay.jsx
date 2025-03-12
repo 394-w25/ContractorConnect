@@ -12,6 +12,12 @@ const BidsDisplay = ({setModalOpen }) => {
 
     // State to track which contractor cards are expanded
     const [expandedCards, setExpandedCards] = useState({});
+
+
+    if(!jobRequest) {
+        return (<p>Loading data</p>)
+    }
+
     
     const contract_list = jobRequest.contractorName ? 
                         Object.values(contractors).filter((contractor) => contractor.name === jobRequest.contractorName) : 
@@ -19,7 +25,6 @@ const BidsDisplay = ({setModalOpen }) => {
 
     const handleClick = () => {
         if(jobRequest.contractorName !== "None") {
-            console.log('asdfdsafsadf');
             update({... jobRequest, 'contractorName' : "None" })
         }
         else {

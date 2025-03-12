@@ -7,7 +7,13 @@ import { idContext } from '../pages/RequestPage';
 
 const RequestInfoDetails =() => {
     const id = useContext(idContext);
-    const [request, error] = useDbData(`requests/${id}`)
+    const [request, error] = useDbData(`requests/${id}`);
+
+    console.log(request)
+
+    if(!request) {
+        return (<p>Loading data</p>)
+    }
 
     return (
         <Box sx={{
@@ -37,7 +43,7 @@ const RequestInfoDetails =() => {
                     fontWeight: 700,
                     lineHeight: "normal",
                 }}>
-                    {title}
+                    {request.name}
                 </Typography>
             </Box>
 
@@ -51,19 +57,6 @@ const RequestInfoDetails =() => {
             }}>
 
             <p className="text-lg"> Request Information</p>
-            { <Typography sx={{
-                color: "#000",
-                fontFamily: "Inter",
-                fontSize: "14px",
-                fontStyle: "normal",
-                fontWeight: 400,
-                paddingTop: "10px",
-                lineHeight: "16px", // or 1.14 for the percentage-based value
-                letterSpacing: "0.28px",
-                alignSelf: "stretch",
-            }}>
-                Tell us a bit more about the project:
-            </Typography> }
             { <Typography sx={{
                 color: "#000",
                 fontFamily: "Inter",
@@ -94,7 +87,7 @@ const RequestInfoDetails =() => {
                 fontWeight: 400,
                 lineHeight: "24px", // or 1.5 for the percentage-based value
             }}>
-                {desc}
+                {request.desc}
             </Typography>
 
         </Box>
