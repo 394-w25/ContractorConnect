@@ -21,11 +21,11 @@ function CustomModal({ isOpen, onClose,onContractorSelect }) {
   const id = useContext(idContext);
   const [update, result] = useDbUpdate(`requests/${id}`)
 
-  const handleContractorSelect = (contractor) => {
-    update({'contractorName': contractor.name})
-    setSelectedContractor(contractor);
+  const handleContractorSelect = (id) => {
+    update({'contractorName': id})
+    setSelectedContractor(id);
     if (onContractorSelect) {
-      onContractorSelect(contractor); // Call the parent callback
+      onContractorSelect(id); // Call the parent callback
     }
   };
 
@@ -62,11 +62,11 @@ function CustomModal({ isOpen, onClose,onContractorSelect }) {
 
         {/* Contractor Selection */}
         <Grid container spacing={2}>
-          {Object.values(contractors).map((contractor, index) => (
-            <Grid item xs={6} key={index}>
+          {Object.entries(contractors).map(([id, contractor]) => (
+            <Grid item xs={6} key={id}>
               <Button
                 fullWidth
-                onClick={() => handleContractorSelect(contractor)}
+                onClick={() => handleContractorSelect(id)}
                 sx={{ 
                   p: 0,
                   textTransform: 'none',

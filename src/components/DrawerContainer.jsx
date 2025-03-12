@@ -29,6 +29,17 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
 
     const activeProjects = requests.filter(([id, request]) => request.contractorName !== 'None')
     const activeRequests = requests.filter(([id, request]) => request.contractorName === 'None' ) 
+    let activeContractors = []
+    for(let i = 0; i < activeProjects.length; i++) {
+        const [id, request] = activeProjects[i];
+        const contractorName = request.contractorName;
+        console.log(contractors)
+        console.log(contractorName)
+        if(contractorName !== "None" && !activeContractors.includes(contractorName)) {
+            activeContractors.push(contractorName)
+        }
+    }
+
     const noProjects = Object.entries(activeRequests).length == 0 && Object.entries(activeProjects).length == 0
 
     return (
@@ -99,17 +110,17 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
                               ))}
                           </div>
                       }
-                      {(contractors && Object.entries(contractors).length > 0) &&
+                      {(activeContractors.length > 0) &&
                           <div className="flex flex-col gap-2 items-center p-4">
                               <span className="font-bold w-full text-start">
                                   Contractors
                               </span>
-                              {Object.entries(contractors).map((ct, idx) => (
+                              {activeContractors.map(name => (
                                   <ContractorCard
-                                      key={idx}
-                                      name={ct[1].name}
-                                      quote={ct[1].quote}
-                                      imgUrl={ct[1].logo}
+                                      key={name}
+                                      name={contractors[name].name}
+                                      quote={contractors[name].quote}
+                                      imgUrl={contractors[name].logo}
                                       height={51}
                                       width={'100%'}
                                       needsQuote={false}

@@ -5,7 +5,6 @@ import { fetchImage } from '../utilities/firebase';
 
 
 const RequestInfoDetails =({request}) => {
-    console.log(request)
     const [img, setImg] = useState('');
     
     useEffect(() => {
@@ -17,8 +16,6 @@ const RequestInfoDetails =({request}) => {
     wrapper();
     
     }, [request.imgUrl])
-
-    console.log(img)
 
 
     return (
