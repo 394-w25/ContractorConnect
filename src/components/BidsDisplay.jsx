@@ -37,57 +37,62 @@ const BidsDisplay = ({setModalOpen, index}) => {
     };
     
     return (
-        <div className="flex flex-col p-3 gap-y-2">
+        <div className="p-6">
             <div className="flex justify-between mb-2">
-                <p className="text-2xl">Bids</p>
+                {/*<p className="text-2xl">Bids</p>*/}
 
-                <div>
-                    <label className="text-black">
-                        Find Someone?
-                        <input
-                        type="checkbox"
-                        className="ml-2 border-2 border-homieBlue focus:border-homieBlue scale-150"
-                        checked={jobRequest.contractorName !== null}
-                        onClick={handleClick}
-                        />
-                    </label>
-                </div>
             </div>
             
-            <div className="flex justify-between items-center">
+         {/*  <div className="flex justify-between items-center mb-4">
                 <p>Our estimated cost:</p>
                 <div className="border-2 border-homieBlue p-2 rounded-md text-homieBlue"> $350.00 </div>
-            </div>
+            </div> */}
 
-            <p className="text-lg">Contractors</p>
-            
-            {contract_list.map((contractor, idx) => {
-                const isExpanded = expandedCards[contractor.id] || expandedCards[idx];
+<div className="flex justify-between items-center mb-3">
+                <p className="text-lg">Contractor Bids</p>
                 
-                return (
-                    <div key={idx} onClick={() => toggleCardExpansion(contractor.id || idx)}>
-                        {isExpanded ? (
-                            <ContractorBidCard
-                                name={contractor.name} 
-                                quote={contractor.quote} 
-                                imgUrl={contractor.img} 
-                                width={'75%'} 
-                                height={'30'} 
-                                needsQuote={true}
-                            />
-                        ) : (
-                            <ContractorCard
-                                name={contractor.name} 
-                                quote={contractor.quote} 
-                                imgUrl={contractor.img} 
-                                width={'75%'} 
-                                height={'30'} 
-                                needsQuote={true}
-                            />
-                        )}
-                    </div>
-                );
-            })}
+                <button 
+                    className="bg-homieBlue text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+                    onClick={handleClick}
+                >
+                    {jobRequest.contractorName !== null ? "Reset Selection" : "Find Someone"}
+                </button>
+            </div>
+            
+                        {/* Container for horizontal scrollable layout of cards */}
+                        <div className="flex overflow-x-auto pb-4 gap-4 no-scrollbar">
+                {contract_list.map((contractor, idx) => {
+                    const isExpanded = expandedCards[contractor.id] || expandedCards[idx];
+                    
+                    return (
+                        <div 
+                            key={idx} 
+                            onClick={() => toggleCardExpansion(contractor.id || idx)}
+                            className="flex-shrink-0"
+                        >
+                            {isExpanded ? (
+                                <ContractorBidCard
+                                    name={contractor.name} 
+                                    quote={contractor.quote} 
+                                    imgUrl={contractor.img} 
+                                    width={'220px'} 
+                                    height={'30'} 
+                                    needsQuote={true}
+                                />
+                            ) : (
+                                <ContractorBidCard
+                                    name={contractor.name} 
+                                    quote={contractor.quote} 
+                                    imgUrl={contractor.img} 
+                                    width={'220px'} 
+                                    height={'30'} 
+                                    needsQuote={true}
+                                />
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 };

@@ -15,30 +15,27 @@ const RequestInfo = ({isDrawerOpen, index}) => {
     };
 
     return (
-        <div >
-            <div className={"grid grid-cols-3 bg-white "}>
-                <div className="col-span-2">
+        <div>
+            <div className="bg-white">
+                {/* RequestInfoDetails now takes full width */}
+                <div>
                     <RequestInfoDetails index={index}/>
                 </div>
-
-
-                <div className="col-span-1">
+                
+                {/* BidsDisplay moved below RequestInfoDetails */}
+                <div className="mt-6">
                     <BidsDisplay setModalOpen={setOpen} 
-                                index={index}/>
+                               index={index}/>
                 </div>
             </div>
 
-
-            {/* Remove this standalone ConfirmationModal as it's duplicated */}
-            {/* <ConfirmationModal /> */}
-            
             {open && (
                 <div style={{ textAlign: "center", marginTop: "100px" }}>
                     <ConfirmationModal 
                         isOpen={open} 
                         onClose={() => setOpen(false)}
                         onContractorSelect={handleContractorSelect}
-                        index = {index}
+                        index={index}
                     />
                 </div>
             )}
@@ -48,7 +45,7 @@ const RequestInfo = ({isDrawerOpen, index}) => {
                 onClose={() => setShowConfirmationUpdate(false)}
             />   
         </div>
-        
     )
 }
-export default RequestInfo; 
+
+export default RequestInfo;
