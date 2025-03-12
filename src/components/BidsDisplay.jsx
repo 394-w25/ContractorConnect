@@ -19,7 +19,7 @@ const BidsDisplay = ({setModalOpen }) => {
     }
 
     
-    const contract_list = jobRequest.contractorName ? 
+    const contract_list = jobRequest.contractorName !== "None" ? 
                         Object.values(contractors).filter((contractor) => contractor.name === jobRequest.contractorName) : 
                         Object.values(contractors);
 
@@ -59,7 +59,7 @@ const BidsDisplay = ({setModalOpen }) => {
                     className="bg-homieBlue text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
                     onClick={handleClick}
                 >
-                    {jobRequest.contractorName !== null ? "Cancel Selection" : "Find Someone"}
+                    {jobRequest.contractorName !== "None" ? "Cancel Selection" : "Find Someone"}
                 </button>
             </div>
             

@@ -27,9 +27,8 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
         navigate(`requests/${id}`);
     }
 
-    const activeProjects = requests.filter((request) => request.contractorName !== "None")
-    const activeRequests = requests.filter((request) => request.contractorName === "None" ) 
-
+    const activeProjects = requests.filter(([id, request]) => request.contractorName !== 'None')
+    const activeRequests = requests.filter(([id, request]) => request.contractorName === 'None' ) 
     const noProjects = Object.entries(activeRequests).length == 0 && Object.entries(activeProjects).length == 0
 
     return (
@@ -83,7 +82,7 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
                               ))}
                           </div>
                       }
-                      {(activeRequests && Object.entries(activeRequests).length > 0) && 
+                      {(activeRequests) && 
                           <div className="flex flex-col gap-2 items-center p-4">
                               <span className="font-bold w-full text-start">
                                   Requests

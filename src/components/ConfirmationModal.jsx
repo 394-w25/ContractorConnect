@@ -19,10 +19,10 @@ function CustomModal({ isOpen, onClose,onContractorSelect }) {
   const [selectedContractor, setSelectedContractor] = useState(null);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const id = useContext(idContext);
-  const [update, result] = useDbUpdate(`requests/${id}/contractorName`)
+  const [update, result] = useDbUpdate(`requests/${id}`)
 
   const handleContractorSelect = (contractor) => {
-    update(contractor.name)
+    update({'contractorName': contractor.name})
     setSelectedContractor(contractor);
     if (onContractorSelect) {
       onContractorSelect(contractor); // Call the parent callback
