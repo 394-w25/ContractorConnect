@@ -90,7 +90,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 
 		const newRequest = {
 			desc: `Painting project for ${state.address}`,
-			email: user.email, // You’ll need to get this from somewhere
+			email: user.email, 
 			name: state.projectTitle || state.address || "New Project",
 			imgUrl: state.uploadedImageUrl,
 			contractorName: "None",

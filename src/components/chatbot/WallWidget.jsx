@@ -25,14 +25,14 @@ import { Plus, Trash } from 'lucide-react';
                                  />
                              </td>
                          </tr>
-                         <tr className="border-b">
+                         {/* <tr className="border-b">
                              <td className="px-4 py-2 font-semibold bg-gray-100">Number of Walls</td>
                              <td className="px-4 py-2 flex justify-center items-center">
                                  <input type="number" className="px-2 py-1 border rounded w-14" value={props.noOfWalls}
                                      onChange={e => props.actionProvider.setNoOfWalls(e.target.value)}
                                  />
                              </td>
-                         </tr>
+                         </tr> */}
                          {props.dimensions.map((dim, idx) => (
                              <tr className="border-b last:border-none" key={idx}>
                                  <td className="px-4 py-2 font-semibold bg-gray-100">Dimensions of Wall {idx + 1}</td>
