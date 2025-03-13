@@ -45,7 +45,7 @@ const ImageWidget = (props) => {
             />
 
             <button
-                className="absolute left-2 bottom-[4.5rem] w-12 h-12 border border-gray-600 z-[200] flex shadow-md
+                className="absolute left-2 bottom-3 w-12 h-12 border border-gray-600 z-[200] flex shadow-md
         justify-center items-center bg-white rounded-full hover:bg-gray-100 transition duration-200 ease-in-out"
                 onClick={handleButtonClick}
             >
