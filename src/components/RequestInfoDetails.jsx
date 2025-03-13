@@ -77,11 +77,11 @@ const RequestInfoDetails =({request}) => {
                          backgroundRepeat: "no-repeat",                      
                      }}/>
 
-            <p className="text-lg"> Request Information</p>
+<p className="text-2xl"> Request Information</p>
             { <Typography sx={{
                 color: "#000",
                 fontFamily: "Inter",
-                fontSize: "12px",
+                fontSize: "14px",
                 fontStyle: "normal",
                 fontWeight: 400,
                 lineHeight: "16px", // or 1.14 for the percentage-based value
@@ -90,8 +90,37 @@ const RequestInfoDetails =({request}) => {
                 paddingLeft: "10px",
             }}>
 
-                Property name: {request.name} • Number of walls: 1 • Wall dimensions: Wall 1: 10x10 ft
+                Property name: demo
             </Typography> }
+            { <Typography sx={{
+                color: "#000",
+                fontFamily: "Inter",
+                fontSize: "14px",
+                fontStyle: "normal",
+                fontWeight: 400,
+                lineHeight: "16px", // or 1.14 for the percentage-based value
+                letterSpacing: "0.28px",
+                alignSelf: "stretch",
+                paddingLeft: "10px",
+            }}>
+
+                Number of walls: 1
+            </Typography> }
+            { <Typography sx={{
+                color: "#000",
+                fontFamily: "Inter",
+                fontSize: "14px",
+                fontStyle: "normal",
+                fontWeight: 400,
+                lineHeight: "16px", // or 1.14 for the percentage-based value
+                letterSpacing: "0.28px",
+                alignSelf: "stretch",
+                paddingLeft: "10px",
+            }}>
+
+                Wall dimensions: Wall 1: 10x10 ft
+            </Typography> }
+
             </Box>
 
             <Typography sx={{
