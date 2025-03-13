@@ -62,3 +62,11 @@
 .react-chatbot-kit-user-chat-message-arrow {
   opacity: 0;
 }
+
+.react-chatbot-kit-chat-input-container {
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  height: 0;
+  overflow: hidden;
+}
