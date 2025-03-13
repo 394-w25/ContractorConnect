@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import { fetchImage } from '../utilities/firebase';
 
-
 const RequestInfoDetails =({request}) => {
     const [img, setImg] = useState('');
     
@@ -91,7 +90,7 @@ const RequestInfoDetails =({request}) => {
                 paddingLeft: "10px",
             }}>
 
-                Property name: demo • Number of walls: 1 • Wall dimensions: Wall 1: 10x10 ft
+                Property name: {request.name} • Number of walls: 1 • Wall dimensions: Wall 1: 10x10 ft
             </Typography> }
             </Box>
 
