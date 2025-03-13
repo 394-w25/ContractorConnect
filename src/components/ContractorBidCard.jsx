@@ -15,7 +15,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import { styled } from '@mui/material/styles';
 import VerifiedBadge from '../lib/verifiedbadge';
 
-const ContractorBidCard = ({ name, quote, rating, reviews, website, phone, contractorsNeeded = 2, days = 2, materials = 75, labor = 200, equipment = 75,
+const ContractorBidCard = ({ pdf, name, quote, rating, reviews, website, phone, contractorsNeeded = 2, days = 2, materials = 75, labor = 200, equipment = 75,
   imgUrl, height = 80, width = '50%', needsQuote = true }) => {
 
   return (
@@ -88,7 +88,7 @@ const ContractorBidCard = ({ name, quote, rating, reviews, website, phone, contr
         {phone}
       </Typography>
       {/* See full bid button */}
-      <a href="https://drive.google.com/file/d/1ll0H4vFWaYKxATcn-cHjILFIctjPTjB3/view?usp=drive_link">
+      <a href={pdf} target="_blank">
         <Button 
           variant="contained" 
           fullWidth 

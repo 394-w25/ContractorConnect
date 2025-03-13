@@ -75,6 +75,7 @@ const BidsDisplay = ({setModalOpen }) => {
                                     height={'30'} 
                                     needsQuote={true}
                                     rating={contractor.rating}
+                                    pdf={contractor.pdf}
                                 />
                             ) : (
                                 <ContractorBidCard
@@ -85,6 +86,7 @@ const BidsDisplay = ({setModalOpen }) => {
                                     height={'40'} 
                                     needsQuote={true}
                                     rating={contractor.rating}
+                                    pdf={contractor.pdf}
                                 />
                             )}
                         </div>

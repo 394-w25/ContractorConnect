@@ -94,7 +94,8 @@ export const contractors = {
         "days": 2,
         "materials": 75,
         "labor": 75,
-        "equipment": 75
+        "equipment": 75,
+        "pdf": "https://drive.google.com/file/d/1fRbJfeSIo4LfvWnzLF7iWOYRrj3EZ0W5/view?usp=sharing"
     },
     "connor_construct": {
         "name": "Connor Construct",
@@ -112,7 +113,8 @@ export const contractors = {
         "days": 3,
         "materials": 60,
         "labor": 90,
-        "equipment": 45
+        "equipment": 45,
+        "pdf": "https://drive.google.com/file/d/1ll0H4vFWaYKxATcn-cHjILFIctjPTjB3/view?usp=drive_link"
     },
     "bob_builder": {
         "name": "Bob Builder",
@@ -130,7 +132,8 @@ export const contractors = {
         "days": 2,
         "materials": 85,
         "labor": 65,
-        "equipment": 80
+        "equipment": 80,
+        "pdf": "https://drive.google.com/file/d/1um9uBpBR-0HDafxvIaR1xwQr-50z6zLj/view?usp=drive_link"
     },
     "mario_luigi_renovations": {
         "name": "Mario & Luigi Renovations",
@@ -148,7 +151,8 @@ export const contractors = {
         "days": 4,
         "materials": 95,
         "labor": 70,
-        "equipment": 60
+        "equipment": 60,
+        "pdf": "https://drive.google.com/file/d/1fRbJfeSIo4LfvWnzLF7iWOYRrj3EZ0W5/view?usp=sharing"
     }
     // "handy_manny_services": {
     //     "name": "Handy Manny's Services",
