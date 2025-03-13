@@ -14,18 +14,10 @@ import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import { styled } from '@mui/material/styles';
 import VerifiedBadge from '../lib/verifiedbadge';
-const ContractorBidCard = ({name, quote, imgUrl, height = 80, width = '50%', needsQuote = true}) => {
-  const companyName = name || "Connor Construct, LLC";
-  const price = quote || "350.00";
-  const rating = 3.10;
-  const reviews = "8.7K";
-  const website = "www.connorconstruct.com";
-  const phone = "888-867-5309";
-  const contractorsNeeded = 2;
-  const days = 2;
-  const materials = 75;
-  const labor = 200;
-  const equipment = 75;
+
+const ContractorBidCard = ({ name, quote, rating, reviews, website, phone, contractorsNeeded = 2, days = 2, materials = 75, labor = 200, equipment = 75,
+  imgUrl, height = 80, width = '50%', needsQuote = true }) => {
+
   return (
     <Card sx={{
       border: '2px solid #2511BE',
@@ -37,14 +29,14 @@ const ContractorBidCard = ({name, quote, imgUrl, height = 80, width = '50%', nee
     }}>
       {/* Header with image and price */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-      <CardMedia
-          sx={{ 
-            height: 50, 
+        <CardMedia
+          sx={{
+            height: 50,
             width: '62%',
             borderRadius: 1
           }}
           image={imgUrl || "/construction-image.jpg"}
-          title={companyName}
+          title={name}
         />
         {needsQuote &&
           <Button
@@ -59,7 +51,7 @@ const ContractorBidCard = ({name, quote, imgUrl, height = 80, width = '50%', nee
               border: '1px solid #2511BE'
             }}
           >
-            ${price}
+            ${quote}
           </Button>
         }
       </Box>
@@ -67,7 +59,7 @@ const ContractorBidCard = ({name, quote, imgUrl, height = 80, width = '50%', nee
       <CardContent sx={{ p: 0, mb: 1 }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Typography variant="h6" component="div" sx={{ fontWeight: 'bold' }}>
-            {companyName}
+            {name}
           </Typography>
           <Box sx={{ display: 'flex', gap: 1 }}>
             <EmailIcon sx={{ color: '#2511BE' }} />
@@ -83,7 +75,7 @@ const ContractorBidCard = ({name, quote, imgUrl, height = 80, width = '50%', nee
         <Typography variant="h6" component="span" sx={{ mx: 1, fontWeight: 'bold' }}>
           {rating}
         </Typography>
-        <Rating value={3} readOnly sx={{ color: '#2511BE' }} />
+        <Rating value={rating} precision={0.1} readOnly sx={{ color: '#2511BE' }} />
         <Typography variant="body1" component="span" sx={{ ml: 1, color: '#2511BE' }}>
           {reviews} Reviews
         </Typography>
@@ -96,9 +88,15 @@ const ContractorBidCard = ({name, quote, imgUrl, height = 80, width = '50%', nee
         {phone}
       </Typography>
       {/* See full bid button */}
-      <Button variant="contained" fullWidth sx={{ backgroundColor: '#2511BE', color: 'white', mb: 2 }}>
-        See full bid
-      </Button>
+      <a href="https://drive.google.com/file/d/1ll0H4vFWaYKxATcn-cHjILFIctjPTjB3/view?usp=drive_link">
+        <Button 
+          variant="contained" 
+          fullWidth 
+          sx={{ backgroundColor: '#2511BE', color: 'white', mb: 2 }}>
+          See full bid
+        </Button>
+      </a>
+ 
       {/* Details section */}
       <Box>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>

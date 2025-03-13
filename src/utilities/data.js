@@ -1,3 +1,14 @@
+import benLogo from '../components/logos/Ben Benjamin - Logo.svg';
+import connorLogo from '../components/logos/Connor construct - Logo.svg';
+import bobLogo from '../components/logos/Bob Builder - Logo.svg';
+import marioLogo from '../components/logos/Mario & Luigi Renovations - Logo.svg';
+import handyLogo from '../components/logos/Handy Manny\'s Services - Logo.svg';
+import dunderLogo from '../components/logos/Dunder Mifflin Maintenance - Logo.svg';
+import peteLogo from '../components/logos/Pete\'s Painting - Logo.svg';
+import acmeLogo from '../components/logos/Acme Home Services - Logo.svg';
+import weasleyLogo from '../components/logos/Weasley\'s Renovations - Logo.svg';
+import toolmanLogo from '../components/logos/The Toolman Services - Logo.svg';
+
 
 export const jobRequests = {
 
@@ -67,31 +78,184 @@ export const jobRequests = {
 }
 
 export const contractors = { 
-
-    0 : {
-        name : "Connor Construct LLC", 
-        quote : 350,
-        img : "https://cdn.prod.website-files.com/63501eb57ab02026df8ab1d3/6644cf7d6e5272cdf60c333c_Second_Image.webp"
+    "ben_benjamin": {
+        "name": "Ben Benjamin",
+        "phone": "(212) 555-3847",
+        "website": "www.benjaminin.com",
+        "verified": true,
+        "rating": 4.7,
+        "numReviews": 187,
+        "costPerGal": 33,
+        "addMatFee": 33,
+        "laborCost": 2.25,
+        "logo": benLogo,
+        "quote": 350,
+        "contractors-needed": 2,
+        "days": 2,
+        "materials": 75,
+        "labor": 75,
+        "equipment": 75
     },
-
-    1 : {
-        name : "Ben Bejamin",
-        quote : 360,
-        img : "https://www.homepainterstoronto.com/wp-content/uploads/2023/07/interior-painting-home-painters-painting-a-home-interior-home-painting-services.jpg"
-    } , 
-
-    2 : { 
-        name : "Chicago Painting, LLC",
-        quote: 410,
-        img : "https://i.ytimg.com/vi/bFk8aJDJln4/maxresdefault.jpg"
-    } , 
-
-    3 : {
-        name : "Best Painters, LLC", 
-        quote  : 360,
-        img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtJnY35iEzFPyhx32Lf_XLJH3OTvLtFScy1w&s"
+    "connor_construct": {
+        "name": "Connor Construct",
+        "phone": "(415) 555-9238",
+        "website": "www.connorconstruct.com",
+        "verified": true,
+        "rating": 4.3,
+        "numReviews": 125,
+        "costPerGal": 46,
+        "addMatFee": 28,
+        "laborCost": 3.1,
+        "logo": connorLogo,
+        "quote": 300,
+        "contractors-needed": 3,
+        "days": 3,
+        "materials": 60,
+        "labor": 90,
+        "equipment": 45
+    },
+    "bob_builder": {
+        "name": "Bob Builder",
+        "phone": "(305) 555-1672",
+        "website": "www.bobbuilder.com",
+        "verified": true,
+        "rating": 4.8,
+        "numReviews": 1256,
+        "costPerGal": 42,
+        "addMatFee": 45,
+        "laborCost": 2.85,
+        "logo": bobLogo,
+        "quote": 310,
+        "contractors-needed": 4,
+        "days": 2,
+        "materials": 85,
+        "labor": 65,
+        "equipment": 80
+    },
+    "mario_luigi_renovations": {
+        "name": "Mario & Luigi Renovations",
+        "phone": "(713) 555-8294",
+        "website": "www.marioandluigirenovations.com",
+        "verified": false,
+        "rating": 3.9,
+        "numReviews": 56,
+        "costPerGal": 39,
+        "addMatFee": 20,
+        "laborCost": 2.75,
+        "logo": marioLogo,
+        "quote": 370,
+        "contractors-needed": 2,
+        "days": 4,
+        "materials": 95,
+        "labor": 70,
+        "equipment": 60
     }
-
+    // "handy_manny_services": {
+    //     "name": "Handy Manny's Services",
+    //     "phone": "(404) 555-3961",
+    //     "website": "www.handymannysservices.com",
+    //     "verified": false,
+    //     "rating": 3.7,
+    //     "numReviews": 42,
+    //     "costPerGal": 36,
+    //     "addMatFee": 15,
+    //     "laborCost": 2.4,
+    //     "logo": handyLogo,
+    //     "quote": 410,
+    //     "contractors-needed": 1,
+    //     "days": 5,
+    //     "materials": 50,
+    //     "labor": 80,
+    //     "equipment": 40
+    // },
+    // "dunder_mifflin_maintenance": {
+    //     "name": "Dunder Mifflin Maintenance",
+    //     "phone": "(312) 555-7428",
+    //     "website": "www.dundermifflinmaintenance.com",
+    //     "verified": false,
+    //     "rating": 3.1,
+    //     "numReviews": 893,
+    //     "costPerGal": 29,
+    //     "addMatFee": 10,
+    //     "laborCost": 1.95,
+    //     "logo": dunderLogo,
+    //     "quote": 400,
+    //     "contractors-needed": 3,
+    //     "days": 3,
+    //     "materials": 40,
+    //     "labor": 55,
+    //     "equipment": 30
+    // },
+    // "petes_painting": {
+    //     "name": "Pete's Painting",
+    //     "phone": "(702) 555-2093",
+    //     "website": "www.petespainting.com",
+    //     "verified": true,
+    //     "rating": 4.5,
+    //     "numReviews": 176,
+    //     "costPerGal": 40,
+    //     "addMatFee": 37,
+    //     "laborCost": 2.6,
+    //     "logo": peteLogo,
+    //     "quote": 390,
+    //     "contractors-needed": 2,
+    //     "days": 2,
+    //     "materials": 90,
+    //     "labor": 85,
+    //     "equipment": 50
+    // },
+    // "acme_home_services": {
+    //     "name": "Acme Home Services",
+    //     "phone": "(206) 555-6741",
+    //     "website": "www.acmehomeservices.com",
+    //     "verified": true,
+    //     "rating": 4.9,
+    //     "numReviews": 28,
+    //     "costPerGal": 30,
+    //     "addMatFee": 12,
+    //     "laborCost": 2.15,
+    //     "logo": acmeLogo,
+    //     "quote": 410,
+    //     "contractors-needed": 4,
+    //     "days": 1,
+    //     "materials": 65,
+    //     "labor": 95,
+    //     "equipment": 85
+    // },
+    // "weasleys_renovations": {
+    //     "name": "Weasley's Renovations",
+    //     "phone": "(617) 555-9025",
+    //     "website": "www.weasleysrenovations.com",
+    //     "verified": false,
+    //     "rating": 3.4,
+    //     "numReviews": 63,
+    //     "costPerGal": 49,
+    //     "addMatFee": 50,
+    //     "laborCost": 3.25,
+    //     "logo": weasleyLogo,
+    //     "quote": 400,
+    //     "contractors-needed": 5,
+    //     "days": 4,
+    //     "materials": 80,
+    //     "labor": 60,
+    //     "equipment": 70
+    // },
+    // "toolman_services": {
+    //     "name": "The Toolman Services",
+    //     "phone": "(303) 555-4182",
+    //     "website": "www.thetoolmanservices.com",
+    //     "verified": false,
+    //     "rating": 3.6,
+    //     "numReviews": 89,
+    //     "costPerGal": 37,
+    //     "addMatFee": 25,
+    //     "laborCost": 2.5,
+    //     "logo": toolmanLogo,
+    //     "quote": 340,
+    //     "contractors-needed": 3,
+    //     "days": 2,
+    //     "materials": 70,
+    //     "labor": 80,
+    //     "equipment": 55
+    // }
 }
-
-

@@ -1,13 +1,20 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useDbData } from '../utilities/firebase';
+import { idContext } from '../pages/RequestPage';
 import BidsDisplay from './BidsDisplay';
 import RequestInfoDetails from './RequestInfoDetails'
 import ConfirmationModal from './ConfirmationModal';
 import ConfirmationUpdateModal from './ConfirmationUpdateModal';
-import ContractorBidCard from './ContractorBidCard'
 
-const RequestInfo = ({isDrawerOpen, index}) => {
+const RequestInfo = () => {
     const [open, setOpen] = useState(false);
     const [showConfirmationUpdate, setShowConfirmationUpdate] = useState(false);
+    const id = useContext(idContext);
+    const [request, error] = useDbData(`requests/${id}`);
+
+    if(!request) {
+        return (<p>Loading data</p>)
+    }
 
     const handleContractorSelect = (contractor) => {
         setOpen(false); // Close the first modal
@@ -15,30 +22,25 @@ const RequestInfo = ({isDrawerOpen, index}) => {
     };
 
     return (
-        <div >
-            <div className={"grid grid-cols-3 bg-white "}>
-                <div className="col-span-2">
-                    <RequestInfoDetails index={index}/>
+        <div>
+            <div className="bg-white">
+                {/* RequestInfoDetails now takes full width */}
+                <div>
+                    <RequestInfoDetails request={request}/> 
                 </div>
-
-
-                <div className="col-span-1">
-                    <BidsDisplay setModalOpen={setOpen} 
-                                index={index}/>
+                
+                {/* BidsDisplay moved below RequestInfoDetails */}
+                <div className="mt-6">
+                    <BidsDisplay setModalOpen={setOpen}/>
                 </div>
             </div>
 
-
-            {/* Remove this standalone ConfirmationModal as it's duplicated */}
-            {/* <ConfirmationModal /> */}
-            
             {open && (
                 <div style={{ textAlign: "center", marginTop: "100px" }}>
                     <ConfirmationModal 
                         isOpen={open} 
                         onClose={() => setOpen(false)}
                         onContractorSelect={handleContractorSelect}
-                        index = {index}
                     />
                 </div>
             )}
@@ -48,7 +50,7 @@ const RequestInfo = ({isDrawerOpen, index}) => {
                 onClose={() => setShowConfirmationUpdate(false)}
             />   
         </div>
-        
     )
 }
-export default RequestInfo; 
+
+export default RequestInfo;

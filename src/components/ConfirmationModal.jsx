@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import {
   Modal,
   Box,
@@ -11,26 +11,21 @@ import {
 } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import { contractors } from '../utilities/data';
-import React, { useState } from "react";
 import ConfirmationUpdateModal from './ConfirmationUpdateModal';
-import { jobRequestContext } from "./Dispatcher.jsx";
+import { useDbUpdate } from '../utilities/firebase';
+import { idContext } from '../pages/RequestPage';
 
-function CustomModal({ isOpen, onClose,onContractorSelect, index }) {
+function CustomModal({ isOpen, onClose,onContractorSelect }) {
   const [selectedContractor, setSelectedContractor] = useState(null);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const { setJobReqs } = useContext(jobRequestContext);
+  const id = useContext(idContext);
+  const [update, result] = useDbUpdate(`requests/${id}`)
 
-  const handleContractorSelect = (contractor) => {
-    setJobReqs((prev) => {
-      let jobRequest  = prev[index]
-      jobRequest.contractorName = contractor.name
-      return {...prev, [index] : jobRequest}
-    })
-
-
-    setSelectedContractor(contractor);
+  const handleContractorSelect = (id) => {
+    update({'contractorName': id})
+    setSelectedContractor(id);
     if (onContractorSelect) {
-      onContractorSelect(contractor); // Call the parent callback
+      onContractorSelect(id); // Call the parent callback
     }
   };
 
@@ -67,11 +62,11 @@ function CustomModal({ isOpen, onClose,onContractorSelect, index }) {
 
         {/* Contractor Selection */}
         <Grid container spacing={2}>
-          {Object.values(contractors).map((contractor, index) => (
-            <Grid item xs={6} key={index}>
+          {Object.entries(contractors).map(([id, contractor]) => (
+            <Grid item xs={6} key={id}>
               <Button
                 fullWidth
-                onClick={() => handleContractorSelect(contractor)}
+                onClick={() => handleContractorSelect(id)}
                 sx={{ 
                   p: 0,
                   textTransform: 'none',
@@ -101,7 +96,7 @@ function CustomModal({ isOpen, onClose,onContractorSelect, index }) {
                 <CardMedia
                   component="img"
                   height="80"
-                  image={contractor.img} // Image from data.js
+                  image={contractor.logo} // Image from data.js
                   alt={contractor.name}
                   sx={{ 
                     borderRadius: 1,

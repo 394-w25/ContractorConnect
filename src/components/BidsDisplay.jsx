@@ -1,27 +1,31 @@
 import { useContext, useState } from 'react'; 
-import { jobRequestContext } from './Dispatcher';
 import { contractors } from "../utilities/data";
-import ContractorCard from "./ContractorCard";
+import { idContext } from '../pages/RequestPage';
 import ContractorBidCard from "./ContractorBidCard";
+import { useDbData, useDbUpdate } from '../utilities/firebase';
 
-const BidsDisplay = ({setModalOpen, index}) => {
-    const {jobReqs, setJobReqs} = useContext(jobRequestContext);
-    let jobRequest = jobReqs[index];
+const BidsDisplay = ({setModalOpen }) => {
     
+    const id = useContext(idContext);
+    const [jobRequest, error] = useDbData(`requests/${id}`)
+    const [update, result] = useDbUpdate(`requests/${id}`)
+
     // State to track which contractor cards are expanded
     const [expandedCards, setExpandedCards] = useState({});
+
+
+    if(!jobRequest) {
+        return (<p>Loading data</p>)
+    }
+
     
-    const contract_list = jobRequest.contractorName ? 
-                        Object.values(contractors).filter((contractor) => contractor.name === jobRequest.contractorName) : 
-                        Object.values(contractors);
+    const contract_list = jobRequest.contractorName !== "None" ? 
+                        Object.entries(contractors).filter(([id, contractor]) => id === jobRequest.contractorName) : 
+                        Object.entries(contractors);
 
     const handleClick = () => {
-        if(jobRequest.contractorName !== null) {
-            jobRequest.contractorName = null;
-            console.log('asdfdsafsadf');
-            setJobReqs((prev) => {
-                return {...prev, [index] : jobRequest};
-            });
+        if(jobRequest.contractorName !== "None") {
+            update({... jobRequest, 'contractorName' : "None" })
         }
         else {
             setModalOpen(true);
@@ -37,57 +41,54 @@ const BidsDisplay = ({setModalOpen, index}) => {
     };
     
     return (
-        <div className="flex flex-col p-3 gap-y-2">
-            <div className="flex justify-between mb-2">
-                <p className="text-2xl">Bids</p>
+        <div className="p-6">
 
-                <div>
-                    <label className="text-black">
-                        Find Someone?
-                        <input
-                        type="checkbox"
-                        className="ml-2 border-2 border-homieBlue focus:border-homieBlue scale-150"
-                        checked={jobRequest.contractorName !== null}
-                        onClick={handleClick}
-                        />
-                    </label>
-                </div>
-            </div>
             
-            <div className="flex justify-between items-center">
-                <p>Our estimated cost:</p>
-                <div className="border-2 border-homieBlue p-2 rounded-md text-homieBlue"> $350.00 </div>
-            </div>
-
-            <p className="text-lg">Contractors</p>
-            
-            {contract_list.map((contractor, idx) => {
-                const isExpanded = expandedCards[contractor.id] || expandedCards[idx];
+            <div className="flex justify-between items-center mb-3">
+                <p className="text-lg">Contractor Bids</p>
                 
-                return (
-                    <div key={idx} onClick={() => toggleCardExpansion(contractor.id || idx)}>
-                        {isExpanded ? (
-                            <ContractorBidCard
-                                name={contractor.name} 
-                                quote={contractor.quote} 
-                                imgUrl={contractor.img} 
-                                width={'75%'} 
-                                height={'30'} 
-                                needsQuote={true}
-                            />
-                        ) : (
-                            <ContractorCard
-                                name={contractor.name} 
-                                quote={contractor.quote} 
-                                imgUrl={contractor.img} 
-                                width={'75%'} 
-                                height={'30'} 
-                                needsQuote={true}
-                            />
-                        )}
-                    </div>
-                );
-            })}
+                <button 
+                    className="bg-homieBlue text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+                    onClick={handleClick}
+                >
+                    {jobRequest.contractorName !== "None" ? "Cancel Selection" : "Find Someone"}
+                </button>
+            </div>
+            
+                        {/* Container for horizontal scrollable layout of cards */}
+                        <div className="flex overflow-x-auto pb-4 gap-4 no-scrollbar">
+                {contract_list.map(([id, contractor], idx) => {
+                    const isExpanded = expandedCards[contractor.id] || expandedCards[idx];
+                    
+                    return (
+                        <div 
+                            key={idx} 
+                            onClick={() => toggleCardExpansion(contractor.id || idx)}
+                            className="flex-shrink-0"
+                        >
+                            {isExpanded ? (
+                                <ContractorBidCard
+                                    name={contractor.name} 
+                                    quote={contractor.quote} 
+                                    imgUrl={contractor.logo} 
+                                    width={'220px'} 
+                                    height={'30'} 
+                                    needsQuote={true}
+                                />
+                            ) : (
+                                <ContractorBidCard
+                                    name={contractor.name} 
+                                    quote={contractor.quote} 
+                                    imgUrl={contractor.logo} 
+                                    width={'220px'} 
+                                    height={'40'} 
+                                    needsQuote={true}
+                                />
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 };

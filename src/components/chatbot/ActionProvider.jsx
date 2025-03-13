@@ -3,10 +3,12 @@ import { useDbUpdate } from '../../utilities/firebase';
 import { v4 as uuidv4 } from 'uuid';
 import { useContext } from 'react';
 import { userContext } from '../Dispatcher';
+import { useNavigate } from 'react-router-dom';
 
 
 const ActionProvider = ({ createChatBotMessage, setState, children, state }) => {
 	const requestId = uuidv4();
+	const navigate = useNavigate();
 
 	const user = useContext(userContext);
 	const [updateRequestsDb] = useDbUpdate(`requests/${requestId}`); // Firebase database reference
@@ -57,6 +59,25 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 		}));
 	}
 
+	const handleImageUpload = (imageUrl) => {
+		setState((prev) => ({
+			...prev,
+			uploadedImageUrl: imageUrl
+		}));
+
+		const botMessage = createChatBotMessage("Nice! Here is your uploaded image.",
+			{
+				widget: 'imageDisplayWidget'
+			}
+		);
+
+		setState((prev) => ({
+			...prev,
+			messages: [...prev.messages, botMessage],
+		}));
+
+	}
+
 	const handleSubmitForm = () => {
 		const botMessage = createChatBotMessage(
 			`Great! Feel free to ask me questions about this project.`
@@ -71,11 +92,15 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 			desc: `Painting project for ${state.address}`,
 			email: user.email, 
 			name: state.projectTitle || state.address || "New Project",
-			sqft: 0, 
-			contractorId: null
+			imgUrl: state.uploadedImageUrl,
+			contractorName: "None",
+			sqft: 0, // Calculate from wall dimensions if available
+
 		};
 
 		updateRequestsDb(newRequest);
+		navigate('/confirmation');
+
 	};
 
 	const handleMessage = (message) => {
@@ -91,49 +116,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 
 			return;
 		}
-
-
 	}
 
-
-	// const displayProjectInfo = () => {
-	// 	setState((prev) => {
-	// 		const projectData = prev.projectData;
-
-	// 		if (!projectData.walls || projectData.walls.length === 0) {
-	// 			const botMessage = createChatBotMessage(
-	// 				`Project "${projectData.title}" has been created, but no wall dimensions have been added yet.`
-	// 			);
-	// 			return {
-	// 				...prev,
-	// 				messages: [...prev.messages, botMessage],
-	// 			};
-	// 		}
-
-	// 		const wallDimensionsText = projectData.walls.map((wall, index) => {
-	// 			return `Wall ${index + 1}: ${wall.width}x${wall.height} ${wall.unit}`;
-	// 		}).join(', ');
-
-	// 		const botMessage = createChatBotMessage(
-	// 			`Great! Here's a summary of your project "${projectData.title}":
-	//     • Property name: ${projectData.propertyName}
-	//     • Number of walls: ${projectData.wallCount}
-	//     • Wall dimensions: ${wallDimensionsText}`
-	// 		);
-
-
-	// 		// Create a new request object that matches your DB schema
-
-
-	// 		// Update homeowner's requests list in Firebase
-	// 		updateUserDb({ 'test': true }); // Use true as a placeholder value
-
-	// 		return {
-	// 			...prev,
-	// 			messages: [...prev.messages, botMessage],
-	// 		};
-	// 	});
-	// };
 
 
 	return (
@@ -149,6 +133,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state }) => 
 						handleDimDel,
 						handleSubmitForm,
 						handleMessage,
+						handleImageUpload
 					},
 				});
 			})}

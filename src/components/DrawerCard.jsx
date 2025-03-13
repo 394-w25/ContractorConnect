@@ -1,17 +1,26 @@
-import * as React from 'react';
+import { useState, useEffect} from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import Box from '@mui/material/Box';
-import { jobRequests } from '../utilities/data';
+import { fetchImage } from '../utilities/firebase'
 
 
+const DrawerCard =  ({ width, height, imgUrl, name, handleClick }) => {
+  const [img, setImg] = useState('');
 
-const DrawerCard = ({ width, height, img, name, handleClick }) => {
-  
-  console.log(img);
+  useEffect(() => {
+    const wrapper = async () => {
+      console.log(imgUrl)
+      const response = await fetchImage(imgUrl);
+      setImg(response);
+    }
+
+    wrapper();
+    
+  }, [imgUrl])
   
   return (
     <Box 

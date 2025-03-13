@@ -1,32 +1,42 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Drawer from '@mui/material/Drawer';
 import { DrawerCloseIcon } from "../lib/icons";
 import DrawerCard from './DrawerCard';
 import ContractorCard from './ContractorCard';
 import { contractors } from '../utilities/data';
-import { jobRequestContext } from './Dispatcher';
-
+import { useDbData } from '../utilities/firebase';
+import { userContext } from './Dispatcher';
 
 const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
+    const user = useContext(userContext);
     const navigate = useNavigate(); 
+    const [data, error] = useDbData(`requests`);
+    console.log(data)
 
-    const handleClick = (index) => {
-        setIndex(index);
-        navigate('/requests');
+    if(!data) {
+        return (<p>loading data</p>)
     }
 
-    const { jobReqs } = useContext(jobRequestContext);
+    const requests = Object.entries(data).filter(([id, requests]) => requests.email === user.email);
 
 
-    const activeProjects = Object.entries(jobReqs).filter(([index, request]) => request.contractorName !== null)
-    const activeRequests = Object.entries(jobReqs).filter(([index, request]) => request.contractorName === null ) 
+    const handleClick = (id) => {
+        navigate(`requests/${id}`);
+    }
 
-    const noProjects = Object.entries(activeRequests).length == 0 && Object.entries(contractors).length == 0 && Object.entries(activeProjects).length == 0
-
-    //const noProjects = true;
-
-    //console.log(activeProjects)
+    const activeProjects = requests.filter(([id, request]) => request.contractorName !== 'None')
+    const activeRequests = requests.filter(([id, request]) => request.contractorName === 'None' ) 
+    let activeContractors = []
+    for(let i = 0; i < activeProjects.length; i++) {
+        const [id, request] = activeProjects[i];
+        const contractorName = request.contractorName;
+        if(contractorName && contractorName !== "None" && !activeContractors.includes(contractorName)) {
+            activeContractors.push(contractorName)
+        }
+    }
+    console.log(activeContractors)
+    const noProjects = Object.entries(activeRequests).length == 0 && Object.entries(activeProjects).length == 0
 
     return (
         <Drawer
@@ -67,46 +77,46 @@ const DrawerContainer = ({ drawerOpen, setDrawerOpen, setIndex }) => {
                               <span className="font-bold w-full text-start">
                                   Active Projects
                               </span>
-                              {activeProjects.map(rq => (
+                              {activeProjects.map(([id, request]) => (
                                   <DrawerCard
-                                      key={rq[0]}
+                                      key={id}
                                       width={'100%'}
                                       height={51}
-                                      img={rq[1].img}
-                                      name={rq[1].name}
-                                      handleClick = {() => handleClick(rq[0])}
+                                      imgUrl={request.imgUrl}
+                                      name={request.name}
+                                      handleClick = {() => handleClick(id)}
                                   />
                               ))}
                           </div>
                       }
-                      {(activeRequests && Object.entries(activeRequests).length > 0) && 
+                      {(activeRequests) && 
                           <div className="flex flex-col gap-2 items-center p-4">
                               <span className="font-bold w-full text-start">
                                   Requests
                               </span>
-                              {activeRequests.map(rq => (
+                              {activeRequests.map(([id, request]) => (
                                   <DrawerCard
-                                      key={rq[0]}
+                                      key={id}
                                       width={'100%'}
                                       height={51}
-                                      img={rq[1].img}
-                                      name={rq[1].name}
-                                      handleClick = {() => handleClick(rq[0])}
+                                      imgUrl={request.imgUrl}
+                                      name={request.name}
+                                      handleClick = {() => handleClick(id)}
                                   />
                               ))}
                           </div>
                       }
-                      {(contractors && Object.entries(contractors).length > 0) &&
+                      {(activeContractors.length > 0) &&
                           <div className="flex flex-col gap-2 items-center p-4">
                               <span className="font-bold w-full text-start">
                                   Contractors
                               </span>
-                              {Object.entries(contractors).map((ct, idx) => (
+                              {activeContractors.map(contractorName => (
                                   <ContractorCard
-                                      key={idx}
-                                      name={ct[1].name}
-                                      quote={ct[1].quote}
-                                      imgUrl={ct[1].img}
+                                      key={contractorName}
+                                      name={contractors[contractorName].name}
+                                      quote={contractors[contractorName].quote}
+                                      imgUrl={contractors[contractorName].logo}
                                       height={51}
                                       width={'100%'}
                                       needsQuote={false}
