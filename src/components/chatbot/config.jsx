@@ -19,7 +19,7 @@ const config = {
 		projectTitle: '',
 		address: '',
 		noOfWalls: 0,
-		dimensions: [[0, 24]],
+		dimensions: [[0, 0]],
 		uploadedImageUrl: ''
 	},
 	customComponents: {
