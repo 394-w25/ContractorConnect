@@ -30,7 +30,6 @@ const DrawerCard =  ({ width, height, imgUrl, name, handleClick }) => {
     }}>
       <Card sx={{
         width: { width },
-        // height: { height },
         display: "flex",
         padding: "12px",
         alignItems: "center",

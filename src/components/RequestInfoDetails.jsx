@@ -49,7 +49,6 @@ const RequestInfoDetails =({request}) => {
                 </Typography>
             </Box>
 
-            {/* Image and Request Information Container */}
             <Box sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -59,7 +58,7 @@ const RequestInfoDetails =({request}) => {
             }}>
                 <Box
                      component="img"
-                     src={img} // Replace with actual image path
+                     src={img}
                      alt="Request Image"
                      sx={{
                          display: "flex",
@@ -84,7 +83,7 @@ const RequestInfoDetails =({request}) => {
                 fontSize: "14px",
                 fontStyle: "normal",
                 fontWeight: 400,
-                lineHeight: "16px", // or 1.14 for the percentage-based value
+                lineHeight: "16px",
                 letterSpacing: "0.28px",
                 alignSelf: "stretch",
                 paddingLeft: "10px",
@@ -98,7 +97,7 @@ const RequestInfoDetails =({request}) => {
                 fontSize: "14px",
                 fontStyle: "normal",
                 fontWeight: 400,
-                lineHeight: "16px", // or 1.14 for the percentage-based value
+                lineHeight: "16px",
                 letterSpacing: "0.28px",
                 alignSelf: "stretch",
                 paddingLeft: "10px",
@@ -112,7 +111,7 @@ const RequestInfoDetails =({request}) => {
                 fontSize: "14px",
                 fontStyle: "normal",
                 fontWeight: 400,
-                lineHeight: "16px", // or 1.14 for the percentage-based value
+                lineHeight: "16px",
                 letterSpacing: "0.28px",
                 alignSelf: "stretch",
                 paddingLeft: "10px",
@@ -129,13 +128,11 @@ const RequestInfoDetails =({request}) => {
                 overflow: "auto",
                 color: "#000",
                 fontFeatureSettings: "'liga' off, 'clig' off",
-                // textOverflow: "ellipsis",
-                // whiteSpace: "nowrap",
                 fontFamily: "Inter",
                 fontSize: "16px",
                 fontStyle: "normal",
                 fontWeight: 400,
-                lineHeight: "24px", // or 1.5 for the percentage-based value
+                lineHeight: "24px",
             }}>
                 {request.desc}
             </Typography>

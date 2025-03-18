@@ -55,7 +55,6 @@ const BidsDisplay = ({setModalOpen }) => {
                 </button>
             </div>
             
-                        {/* Container for horizontal scrollable layout of cards */}
                         <div className="flex overflow-x-auto pb-4 gap-4 no-scrollbar">
                 {contract_list.map(([id, contractor], idx) => {
                     const isExpanded = expandedCards[contractor.id] || expandedCards[idx];

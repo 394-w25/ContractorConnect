@@ -20,12 +20,7 @@ const ImageWidget = (props) => {
                 const fileName = `image-${timestamp}-${file.name}`;
                 const path = `uploads/${fileName}`;
                 const downloadURL = await uploadImage(file, path);
-
-
-                // const downloadURL = await uploadImage(file, path);
-                // console.log('Download URL:', downloadURL);
                 props.actions.handleImageUpload(downloadURL);
-                // You can now use downloadURL however you like
             } catch (error) {
                 console.error('Upload failed:', error);
             }

@@ -3,7 +3,6 @@ import { createChatBotMessage } from 'react-chatbot-kit';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import InitialWidget from './InitialWidget';
 import ImageDisplayWidget from './ImageDisplayWidget';
-// import WallWidget from './WallWidget';
 
 const config = {
 
@@ -41,8 +40,6 @@ const config = {
 				Homie Paint Project Assistant
 			</div>
 		),
-		// botAvatar: (props) => <></>,
-		// userAvatar: (props) => <></>
 	},
 	widgets: [
 		{
@@ -55,11 +52,6 @@ const config = {
 			widgetFunc: (props) => <ImageDisplayWidget {...props} />,
 			mapStateToProps: ['uploadedImageUrl']
 		},
-		// {
-		// 	widgetName: 'wallWidget',
-		// 	widgetFunc: (props) => <WallWidget {...props} />,
-		// 	mapStateToProps: ['projectData', 'address', 'noOfWalls', 'dimensions']
-		// },
 	],
 };
 

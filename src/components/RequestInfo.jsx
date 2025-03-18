@@ -24,12 +24,9 @@ const RequestInfo = () => {
     return (
         <div>
             <div className="bg-white">
-                {/* RequestInfoDetails now takes full width */}
                 <div>
                     <RequestInfoDetails request={request}/> 
                 </div>
-                
-                {/* BidsDisplay moved below RequestInfoDetails */}
                 <div className="mt-6">
                     <BidsDisplay setModalOpen={setOpen}/>
                 </div>

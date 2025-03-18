@@ -11,17 +11,14 @@ export const callPerplexity = async (chat) => {
             "role": "user",
             "content": chat
         })
-        // console.log(api_key)
         const requestBody = {
             "model": "sonar",
             "messages": messageHistory,
-            // "max_tokens": 123,
             "temperature": 0.2,
             "top_p": 0.9,
             "search_domain_filter": null,
             "return_images": false,
             "return_related_questions": false,
-            // "search_recency_filter": "<string>",
             "top_k": 0,
             "stream": false,
             "presence_penalty": 0,
