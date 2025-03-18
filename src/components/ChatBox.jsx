@@ -7,7 +7,6 @@ import {
 import { HomieIcon } from "../lib/icons";
 
 const ChatBox = ({ isOpen, onClose }) => {
-    console.log('entered')
   return (
     <Modal open={isOpen} onClose={onClose} aria-labelledby="chatbox-modal">
       <Box
