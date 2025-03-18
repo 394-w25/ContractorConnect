@@ -148,6 +148,10 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- USAGE EXAMPLES -->
 
 ## Usage
+To start up a local version of the project, run 
+```sh
+npm start 
+```
 
 To use Homie, first sign in using Google in order to see past and active requests on the left hand column or submit a new project request using the new project submission form. To create a new project request, just fill in the relevant project details, upload an optional project photo, and press submit.
 
