@@ -1,3 +1,13 @@
+import {
+  Modal,
+  Box,
+  Typography,
+  Button,
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+} from "@mui/material";
 import React, { useState, createContext } from "react";
 import config from '../components/chatbot/config.jsx';
 import MessageParser from '../components/chatbot/MessageParser.jsx';
