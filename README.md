@@ -152,39 +152,30 @@ _Below is an example of how you can instruct your audience on installing and set
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
-
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+To use Homie, first sign in using Google in order to see past and active requests on the left hand column or submit a new project request using the new project submission form. To create a new project request, just fill in the relevant project details, upload an optional project photo, and press submit. 
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+To see past details on any past requests or active projects, simply click on each project. If the project is not yet active, view potential Contractor Bids under the project details, and select “Find Someone” to choose a particular contractor. More information about each contractor’s bid can be found when selecting “See Full Bid” which opens a PDF with a detailed breakdown of each bid. 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Once a contractor has been selected for each project, they will show in the left column under “Contractors” and you may cancel your selection in the project details page if you change your mind.
 
-<!-- ROADMAP -->
-
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-  - [ ] Chinese
-  - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-### Top contributors:
 
-<a href="https://github.com/othneildrew/Best-README-Template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=othneildrew/Best-README-Template" alt="contrib.rocks image" />
+<!-- CONTRIBUTING -->
+
+### Contributors:
+
+<a href="https://github.com/394-w25/ContractorConnect/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=394-w25/ContractorConnect" />
 </a>
 
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- ACKNOWLEDGMENTS -->
 
