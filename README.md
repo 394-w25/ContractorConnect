@@ -36,11 +36,11 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]]()
-
-Homie connects homeowners to contractors by letting homeowners submit information about their project and see bids from contractors.
+We present you Homie. Homie connects homeowners to contractors by letting homeowners submit information about their project and see bids from contractors.
 
 Homie starts off with a login screen, which transitions into a page where homeowners can enter info about their project. After submitting the request, they can see bids from contractors, as well as some details about each contractor such as their rating. They are also able to see the bids in a pdf format. After a homeowner selects a contractor for their project, the project becomes active. Homeowners are able to cancel a project if they’d like.
+
+[![Product Name Screen Shot][product-screenshot]]()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
