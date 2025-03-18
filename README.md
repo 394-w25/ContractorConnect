@@ -105,12 +105,13 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
+- **Node.js**
+- **npm**
+- **Firebase CLI:**
+  - Install globally using:
+    ```sh
+    npm install -g firebase-tools
+    ```
 
 ### Installation
 
@@ -145,18 +146,16 @@ _Below is an example of how you can instruct your audience on installing and set
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
-To use Homie, first sign in using Google in order to see past and active requests on the left hand column or submit a new project request using the new project submission form. To create a new project request, just fill in the relevant project details, upload an optional project photo, and press submit. 
+To use Homie, first sign in using Google in order to see past and active requests on the left hand column or submit a new project request using the new project submission form. To create a new project request, just fill in the relevant project details, upload an optional project photo, and press submit.
 
-To see past details on any past requests or active projects, simply click on each project. If the project is not yet active, view potential Contractor Bids under the project details, and select “Find Someone” to choose a particular contractor. More information about each contractor’s bid can be found when selecting “See Full Bid” which opens a PDF with a detailed breakdown of each bid. 
+To see past details on any past requests or active projects, simply click on each project. If the project is not yet active, view potential Contractor Bids under the project details, and select “Find Someone” to choose a particular contractor. More information about each contractor’s bid can be found when selecting “See Full Bid” which opens a PDF with a detailed breakdown of each bid.
 
 Once a contractor has been selected for each project, they will show in the left column under “Contractors” and you may cancel your selection in the project details page if you change your mind.
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- CONTRIBUTING -->
 
@@ -166,9 +165,7 @@ Once a contractor has been selected for each project, they will show in the left
   <img src="https://contrib.rocks/image?repo=394-w25/ContractorConnect" />
 </a>
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- ACKNOWLEDGMENTS -->
 
@@ -180,7 +177,6 @@ We would like to thank and acknowledgment Professor Chris Riesbeck and our produ
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
 
 [product-screenshot]: src/lib/app-screen.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
