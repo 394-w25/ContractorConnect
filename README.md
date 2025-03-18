@@ -19,11 +19,13 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
+# Homie 
+
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
 
-  <h3 align="center">Homie</h3>
+  <img src="src/lib/logo.png" width="150" height="150">
 
   <p align="center">
     <a href="https://contractorconnect-nu.web.app/">View Demo</a>
